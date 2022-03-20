@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>550252993118-4u9ce8fguq647oknmgdnbjear4j1po0m.apps.googleusercontent.com</string>
+	<string>550252993118-2rpbqobvgbk88nb7jf7s2r633dk9igmn.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.550252993118-4u9ce8fguq647oknmgdnbjear4j1po0m</string>
+	<string>com.googleusercontent.apps.550252993118-2rpbqobvgbk88nb7jf7s2r633dk9igmn</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>550252993118-3l21ia58afqvj6iks02188ouj6m0aeko.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.baseline.flutterbackgroundgeolocationexample</string>
+	<string>com.baseline.resident</string>
 	<key>PROJECT_ID</key>
 	<string>zumba-30f13</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,7 +31,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:550252993118:ios:8d869c429063837bfe32cf</string>
+	<string>1:550252993118:ios:d85982c2877a48c8fe32cf</string>
 	<key>DATABASE_URL</key>
 	<string>https://zumba-30f13-default-rtdb.firebaseio.com</string>
 </dict>

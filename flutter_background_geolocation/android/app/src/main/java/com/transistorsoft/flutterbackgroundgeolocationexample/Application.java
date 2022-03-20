@@ -1,4 +1,4 @@
-package com.baseline.flutterbackgroundgeolocationexample;
+package com.baseline.resident;
 
 import android.Manifest;
 import android.location.Location;

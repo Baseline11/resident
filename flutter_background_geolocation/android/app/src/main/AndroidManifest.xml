@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.baseline.flutterbackgroundgeolocationexample">
+    package="com.baseline.resident">
 
     <!-- The INTERNET permission is required for development. Specifically,
          flutter needs it to communicate with the running application
@@ -39,10 +39,15 @@
         </activity>
 
         <service android:name="com.transistorsoft.locationmanager.service.TrackingService" android:foregroundServiceType="location" />
+        
+        <!-- Flutter Background Geolocation licence -->
         <service android:name="com.transistorsoft.locationmanager.service.LocationRequestService" android:foregroundServiceType="location" />
 
-        <meta-data android:name="com.transistorsoft.locationmanager.license" android:value="025736af0c3b480ecc1a6fc8aea17e73cc012049ed117472072b76e5e170953d" />
+        <meta-data android:name="com.transistorsoft.locationmanager.license" android:value="decd804aad1d82b5ac62696a5e71a4b7417a0817f7faa8581a46b32700f11f96" />
         <meta-data android:name="com.transistorsoft.locationmanager.ENCRYPTION_PASSWORD" android:value="transistorsoft" />
+
+        <!-- Background Geolocation Firebase licence -->
++       <meta-data android:name="com.transistorsoft.firebaseproxy.license" android:value="c108610c52b411505f9ca434f41d5b5760ad8848999c54dd9847a6ac328064ac" />
 
         <meta-data
             android:name="flutterEmbedding"
