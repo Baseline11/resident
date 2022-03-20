@@ -419,7 +419,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.transistorsoft.flutterBackgroundGeolocationExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.baseline.flutterbackgroundgeolocationexample;
 				PRODUCT_NAME = "BG Geo";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -447,7 +447,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flutter",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.transistorsoft.flutterBackgroundGeolocationExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.baseline.flutterbackgroundgeolocationexample;
 				PRODUCT_NAME = "BG Geo";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";

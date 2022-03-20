@@ -30,15 +30,18 @@ class _AdvancedAppState extends State<AdvancedApp> {
   Widget build(BuildContext context) {
     final ThemeData theme = ThemeData();
     return new MaterialApp(
-        theme: theme.copyWith(
-            colorScheme: theme.colorScheme.copyWith(secondary: Colors.black),
-            brightness: Brightness.light,
-            bottomAppBarColor: Colors.amberAccent,
-            hintColor: Colors.black12,
-            primaryTextTheme: Theme.of(context).primaryTextTheme.apply(
-                  bodyColor: Colors.black,
-                )),
-        home:
-            Scaffold(body: HomeView(), floatingActionButton: MainMenuButton()));
+      theme: theme.copyWith(
+          colorScheme: theme.colorScheme.copyWith(secondary: Colors.black),
+          brightness: Brightness.light,
+          bottomAppBarColor: Colors.amberAccent,
+          hintColor: Colors.black12,
+          primaryTextTheme: Theme.of(context).primaryTextTheme.apply(
+                bodyColor: Colors.black,
+              )),
+      home: Scaffold(
+        body: HomeView(),
+        floatingActionButton: MainMenuButton(),
+      ),
+    );
   }
 }

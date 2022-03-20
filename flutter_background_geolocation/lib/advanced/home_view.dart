@@ -433,20 +433,27 @@ class HomeViewState extends State<HomeView>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('BG Geo'),
-          centerTitle: true,
-          leading: IconButton(
-              onPressed: _onClickHome,
-              icon: Icon(Icons.home, color: Colors.black)),
-          backgroundColor: Theme.of(context).bottomAppBarColor,
-          foregroundColor: Colors.black,
-          actions: <Widget>[
-            Switch(value: _enabled, onChanged: _onClickEnable),
+        title: const Text('BG Geo'),
+        centerTitle: true,
+        leading: IconButton(
+            onPressed: _onClickHome,
+            icon: Icon(Icons.home, color: Colors.black)),
+        backgroundColor: Theme.of(context).bottomAppBarColor,
+        foregroundColor: Colors.black,
+        actions: <Widget>[
+          Switch(value: _enabled, onChanged: _onClickEnable),
+        ],
+        bottom: TabBar(
+          controller: _tabController,
+          indicatorColor: Colors.red,
+          tabs: [
+            Tab(icon: Icon(Icons.map)),
+            Tab(
+              icon: Icon(Icons.list),
+            ),
           ],
-          bottom: TabBar(
-              controller: _tabController,
-              indicatorColor: Colors.red,
-              tabs: [Tab(icon: Icon(Icons.map)), Tab(icon: Icon(Icons.list))])),
+        ),
+      ),
       //body: body,
       body: SharedEvents(
           events: events,
@@ -455,30 +462,32 @@ class HomeViewState extends State<HomeView>
               children: [MapView(), EventList()],
               physics: new NeverScrollableScrollPhysics())),
       bottomNavigationBar: BottomAppBar(
-          child: Container(
-              padding: const EdgeInsets.only(left: 5.0, right: 5.0),
-              child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    IconButton(
-                      icon: Icon(Icons.gps_fixed),
-                      onPressed: _onClickGetCurrentPosition,
-                    ),
-                    TextButton(
-                        child: Text('$_motionActivity · $_odometer km'),
-                        onPressed: _onClickTestMode,
-                        style: ButtonStyle(
-                            foregroundColor: MaterialStateProperty.all<Color>(
-                                Colors.black))),
-                    MaterialButton(
-                        minWidth: 50.0,
-                        child: Icon(
-                            (_isMoving) ? Icons.pause : Icons.play_arrow,
-                            color: Colors.white),
-                        color: (_isMoving) ? Colors.red : Colors.green,
-                        onPressed: _onClickChangePace)
-                  ]))),
+        child: Container(
+          padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              IconButton(
+                icon: Icon(Icons.gps_fixed),
+                onPressed: _onClickGetCurrentPosition,
+              ),
+              TextButton(
+                  child: Text('$_motionActivity · $_odometer km'),
+                  onPressed: _onClickTestMode,
+                  style: ButtonStyle(
+                      foregroundColor:
+                          MaterialStateProperty.all<Color>(Colors.black))),
+              MaterialButton(
+                  minWidth: 50.0,
+                  child: Icon((_isMoving) ? Icons.pause : Icons.play_arrow,
+                      color: Colors.white),
+                  color: (_isMoving) ? Colors.red : Colors.green,
+                  onPressed: _onClickChangePace)
+            ],
+          ),
+        ),
+      ),
     );
   }
 

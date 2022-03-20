@@ -1,4 +1,4 @@
-package com.transistorsoft.flutterbackgroundgeolocationexample;
+package com.baseline.flutterbackgroundgeolocationexample;
 
 import android.os.Build;
 
