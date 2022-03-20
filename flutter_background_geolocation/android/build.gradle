@@ -6,9 +6,8 @@ buildscript {
         appCompatVersion    = "1.4.0"
         playServicesLocationVersion = "19.0.1"
         removeBackgroundGeolocationDebugSoundsInRelease = false
-        // to add background_geolocation_firebase
-        firebaseCoreVersion = "17.4.4"          
-+       firebaseFirestoreVersion = "21.5.0" 
+        firebaseCoreVersion = "17.4.4"         
+        firebaseFirestoreVersion = "21.5.0" 
     }
     repositories {
         google()
@@ -33,9 +32,8 @@ allprojects {
             url "${project(':flutter_background_geolocation').projectDir}/libs"
         }
         maven {
-+           // to add background_geolocation_firebase
-+           url "${project(':background_geolocation_firebase').projectDir}/libs"
-+       }
+            url "${project(':background_geolocation_firebase').projectDir}/libs"
+        }
     }
 }
 

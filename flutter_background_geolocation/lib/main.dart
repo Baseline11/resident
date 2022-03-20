@@ -12,6 +12,8 @@ import 'hello_world/app.dart';
 import 'config/transistor_auth.dart';
 import 'config/env.dart';
 
+import 'package:firebase_core/firebase_core.dart';
+
 /// Receive events from BackgroundGeolocation in Headless state.
 void backgroundGeolocationHeadlessTask(bg.HeadlessEvent headlessEvent) async {
   print('📬 --> $headlessEvent');
@@ -111,6 +113,11 @@ void backgroundFetchHeadlessTask(HeadlessTask task) async {
   print('[BackgroundFetch] count: $count');
 
   BackgroundFetch.finish(taskId);
+}
+
+Future<void> setUpFirebase() async {
+  await Firebase.initializeApp();
+  //await FirebaseAuth.instance.signInAnonymously();
 }
 
 void main() {

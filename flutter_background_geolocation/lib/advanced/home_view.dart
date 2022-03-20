@@ -17,6 +17,8 @@ import './util/test.dart';
 
 import 'shared_events.dart';
 
+import './firebase_config.dart';
+
 // For pretty-printing location JSON
 JsonEncoder encoder = new JsonEncoder.withIndent("    ");
 
@@ -89,6 +91,8 @@ class HomeViewState extends State<HomeView>
     if (orgname == null || username == null) {
       return runApp(HomeApp());
     }
+
+    FirebaseConfig.setUp(username: username);
 
     _configureBackgroundGeolocation(orgname, username);
     _configureBackgroundFetch();
