@@ -8,8 +8,8 @@ class FirebaseConfig {
     // Configure the Firebase Adapter.
     BackgroundGeolocationFirebase.configure(
       BackgroundGeolocationFirebaseConfig(
-        locationsCollection: "locations/$username",
-        geofencesCollection: "geofences/$username",
+        locationsCollection: "locations_test/$username/locations",
+        geofencesCollection: "geofences_test/$username/geofences",
         updateSingleDocument: false,
       ),
     );
