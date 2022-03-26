@@ -1,0 +1,63 @@
+name: flutter_resident
+description: a simple Surveys app.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.15.1 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: 
+  http: 
+  provider:
+  equatable: 
+  get: 
+  flutter_secure_storage: 
+  localstorage: 
+  carousel_slider: 
+  intl: 
+  cloud_firestore:
+  firebase_core:
+  firebase_auth:
+  flutter_svg:
+  firebase_messaging:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons: 
+  test: 
+  mocktail: 
+  faker: 
+  network_image_mock: 
+  firebase_auth_mocks: 
+  fake_cloud_firestore:
+  flutter_lints:
+  flutter_native_splash: 
+
+flutter:
+  uses-material-design: true
+  assets:
+    - lib/ui/assets/
+    - lib/ui/assets/images/
+
+# Run command to generate icons:
+# 1) flutter pub run flutter_launcher_icons:main
+flutter_icons:
+  ios: true
+  android: true
+  image_path_android: lib/ui/assets/icon/android.png
+  image_path_ios: lib/ui/assets/icon/ios.png
+  adaptive_icon_background: lib/ui/assets/icon/background.png
+  adaptive_icon_foreground: lib/ui/assets/icon/foreground.png
+  remove_alpha_ios: true
+
+# Run commands to generate launch screen:
+# 1) flutter clean
+# 2) flutter pub get
+# 3) flutter pub run flutter_native_splash:create
+flutter_native_splash:
+  color: "#007AFF"
+  image: lib/ui/assets/images/brand.png
