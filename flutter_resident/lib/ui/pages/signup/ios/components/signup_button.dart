@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_resident/ui/helpers/i18n/resources.dart';
 import 'package:provider/provider.dart';
 
-import './../../../components/components.dart';
+import './../../../../components/components.dart';
 
-import '../signup_presenter.dart';
+import './../../signup_presenter.dart';
 
 class SignUpButton extends StatelessWidget {
   final double buttonWidth;

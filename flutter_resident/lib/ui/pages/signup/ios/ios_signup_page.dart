@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_resident/ui/pages/signup/signup_page.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
-import '../../helpers/helpers.dart';
-import '../../mixins/mixins.dart';
-import '../../components/components.dart';
+import '../../../helpers/helpers.dart';
+import '../../../mixins/mixins.dart';
+import '../../../components/components.dart';
 
 import './components/components.dart';
-import './signup.dart';
+import '../signup.dart';
 
 class IosSignUpPage extends StatefulWidget implements SignUpPage {
   final SignUpPresenter presenter;
@@ -95,9 +94,6 @@ class _IosSignUpPageState extends State<IosSignUpPage>
                       ),
                       Spacer(
                         flex: 2,
-                      ),
-                      LoginField(
-                        onTap: widget.presenter.goToLogin,
                       ),
                     ],
                   ),
