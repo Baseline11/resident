@@ -21,8 +21,8 @@ class SignUpButton extends StatelessWidget {
           onPressed: snapshot.data == true ? presenter.signUp : null,
           buttonText: R.strings.signUp.page1ButtonText,
           overlayColor: colorBrandPrimaryDarkest,
-          backgroundColor: colorBrandPrimaryDark,
-          backgroundDisabledColor: colorBrandPrimaryLight,
+          textColor:
+              snapshot.data == true ? ThemeColors.colorLightTintsBlue : null,
           totalWidth: buttonWidth,
         );
       },

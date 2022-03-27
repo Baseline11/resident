@@ -16,13 +16,13 @@ class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
     required this.totalWidth,
     required this.buttonText,
-    required this.backgroundColor,
     required this.overlayColor,
     required this.onPressed,
     this.totalHeight = 50,
-    this.backgroundDisabledColor,
     this.isLoading = false,
     this.textColor,
+    this.backgroundColor = ThemeColors.colorLightBackgroundsPrimary,
+    this.backgroundDisabledColor = ThemeColors.colorLightBackgroundsPrimary,
   });
 
   @override
@@ -34,7 +34,7 @@ class PrimaryButton extends StatelessWidget {
         style: ButtonStyle(
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(25.0),
+              borderRadius: BorderRadius.circular(14.0),
             ),
           ),
           backgroundColor: MaterialStateProperty.resolveWith<Color>(
@@ -58,15 +58,15 @@ class PrimaryButton extends StatelessWidget {
         child: isLoading
             ? CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(
-                  textColor ?? colorFunctionalSoftLightest,
+                  textColor ?? ThemeColors.colorLightLabelsTertiary,
                 ),
               )
             : Text(
                 buttonText,
                 style: TextStyle(
-                  color: textColor ?? colorFunctionalSoftLightest,
+                  color: textColor ?? ThemeColors.colorLightLabelsTertiary,
                   fontSize: fontSizeXXS,
-                  fontWeight: fontWeightBold,
+                  fontWeight: fontWeightRegular,
                   fontFamily: fontFamilyBrand,
                 ),
               ),
