@@ -14,7 +14,7 @@ class R {
         strings = PtBr();
         break;
       default:
-        strings = PtBr();
+        strings = EnCa();
         break;
     }
   }
