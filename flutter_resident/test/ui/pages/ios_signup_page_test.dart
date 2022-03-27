@@ -18,7 +18,11 @@ void main() {
   Future<void> loadPage(WidgetTester tester) async {
     presenter = SignUpPresenterSpy();
     await tester.pumpWidget(
-        makePage(path: '/signup', page: () => IosSignUpPage(presenter)));
+      makePage(
+        path: SignUpPage.routeName,
+        page: () => IosSignUpPage(presenter),
+      ),
+    );
   }
 
   tearDown(() {
@@ -30,18 +34,101 @@ void main() {
     (WidgetTester tester) async {
       await loadPage(tester);
 
-      final name = faker.person.name();
-      await tester.enterText(find.bySemanticsLabel(R.strings.name), name);
-      verify(() => presenter.validateName(name));
+      final result = find.bySemanticsLabel(R.strings.username);
+
+      final username = faker.internet.userName();
+      await tester.enterText(
+          find.bySemanticsLabel(R.strings.username), username);
+      verify(() => presenter.validateUsername(username));
+
+      final firstName = faker.person.firstName();
+      await tester.enterText(
+          find.bySemanticsLabel(R.strings.firstName), firstName);
+      verify(() => presenter.validateFirstName(firstName));
+
+      final lastName = faker.person.lastName();
+      await tester.enterText(
+          find.bySemanticsLabel(R.strings.lastName), lastName);
+      verify(() => presenter.validateLastName(lastName));
 
       final email = faker.internet.email();
       await tester.enterText(find.bySemanticsLabel(R.strings.email), email);
       verify(() => presenter.validateEmail(email));
+    },
+  );
 
-      final password = faker.internet.password();
-      await tester.enterText(
-          find.bySemanticsLabel(R.strings.password), password);
-      verify(() => presenter.validatePassword(password));
+  testWidgets(
+    'Should present username error',
+    (WidgetTester tester) async {
+      await loadPage(tester);
+
+      presenter.emitUsernameError(UIError.invalidField);
+      await tester.pump();
+      expect(find.text(UIError.invalidField.description), findsOneWidget);
+
+      presenter.emitUsernameError(UIError.requiredField);
+      await tester.pump();
+      expect(find.text(UIError.requiredField.description), findsOneWidget);
+
+      presenter.emitUsernameValid();
+      await tester.pump();
+      expect(
+        find.descendant(
+          of: find.bySemanticsLabel(R.strings.username),
+          matching: find.byType(Text),
+        ),
+        findsNWidgets(2),
+      );
+    },
+  );
+
+  testWidgets(
+    'Should present first name error',
+    (WidgetTester tester) async {
+      await loadPage(tester);
+
+      presenter.emitFirstNameError(UIError.invalidField);
+      await tester.pump();
+      expect(find.text(UIError.invalidField.description), findsOneWidget);
+
+      presenter.emitFirstNameError(UIError.requiredField);
+      await tester.pump();
+      expect(find.text(UIError.requiredField.description), findsOneWidget);
+
+      presenter.emitFirstNameValid();
+      await tester.pump();
+      expect(
+        find.descendant(
+          of: find.bySemanticsLabel(R.strings.firstName),
+          matching: find.byType(Text),
+        ),
+        findsNWidgets(2),
+      );
+    },
+  );
+
+  testWidgets(
+    'Should present last name error',
+    (WidgetTester tester) async {
+      await loadPage(tester);
+
+      presenter.emitLastNameError(UIError.invalidField);
+      await tester.pump();
+      expect(find.text(UIError.invalidField.description), findsOneWidget);
+
+      presenter.emitLastNameError(UIError.requiredField);
+      await tester.pump();
+      expect(find.text(UIError.requiredField.description), findsOneWidget);
+
+      presenter.emitLastNameValid();
+      await tester.pump();
+      expect(
+        find.descendant(
+          of: find.bySemanticsLabel(R.strings.lastName),
+          matching: find.byType(Text),
+        ),
+        findsNWidgets(2),
+      );
     },
   );
 
@@ -63,55 +150,6 @@ void main() {
       expect(
         find.descendant(
           of: find.bySemanticsLabel(R.strings.email),
-          matching: find.byType(Text),
-        ),
-        findsNWidgets(2),
-      );
-    },
-  );
-
-  testWidgets(
-    'Should present name error',
-    (WidgetTester tester) async {
-      await loadPage(tester);
-
-      presenter.emitNameError(UIError.invalidField);
-      await tester.pump();
-      expect(find.text(UIError.invalidField.description), findsOneWidget);
-
-      presenter.emitNameError(UIError.requiredField);
-      await tester.pump();
-      expect(find.text(UIError.requiredField.description), findsOneWidget);
-
-      presenter.emitNameValid();
-      await tester.pump();
-      expect(
-          find.descendant(
-            of: find.bySemanticsLabel(R.strings.name),
-            matching: find.byType(Text),
-          ),
-          findsNWidgets(2));
-    },
-  );
-
-  testWidgets(
-    'Should present password error',
-    (WidgetTester tester) async {
-      await loadPage(tester);
-
-      presenter.emitPasswordError(UIError.invalidField);
-      await tester.pump();
-      expect(find.text(UIError.invalidField.description), findsOneWidget);
-
-      presenter.emitPasswordError(UIError.requiredField);
-      await tester.pump();
-      expect(find.text(UIError.requiredField.description), findsOneWidget);
-
-      presenter.emitPasswordValid();
-      await tester.pump();
-      expect(
-        find.descendant(
-          of: find.bySemanticsLabel(R.strings.password),
           matching: find.byType(Text),
         ),
         findsNWidgets(2),
@@ -236,20 +274,6 @@ void main() {
 
     presenter.emitNavigateTo(NavigationState(route: ''));
     await tester.pump();
-    expect(currentRoute, '/signup');
+    expect(currentRoute, SignUpPage.routeName);
   });
-
-  testWidgets(
-    'Should call goToLogin on link click',
-    (WidgetTester tester) async {
-      await loadPage(tester);
-
-      final button = find.text(' ${R.strings.login}');
-      await tester.ensureVisible(button);
-      await tester.tap(button);
-      await tester.pump();
-
-      verify(() => presenter.goToLogin()).called(1);
-    },
-  );
 }

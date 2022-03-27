@@ -57,7 +57,7 @@ class _IosSignUpPageState extends State<IosSignUpPage>
                 child: Container(
                   padding: const EdgeInsets.all(16),
                   child: Column(
-                    //crossAxisAlignment: CrossAxisAlignment.stretch,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Spacer(
