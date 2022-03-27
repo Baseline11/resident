@@ -1,5 +1,5 @@
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter/material.dart';
 import 'package:mocktail/mocktail.dart';
 
 import 'package:flutter_resident/presentation/mixins/navigation_manager.dart';
@@ -21,11 +21,11 @@ void main() {
     presenter.dispose();
   });
 
-  testWidgets('Should present spinner on page load',
+  testWidgets('Should show brand logo on page load',
       (WidgetTester tester) async {
     await loadPage(tester);
 
-    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    expect(find.byType(SvgPicture), findsOneWidget);
   });
 
   testWidgets('Should call loadCurrentAccount on page load',

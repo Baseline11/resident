@@ -5,10 +5,10 @@
 
 // @dart = 2.15
 
-// When `package:flutter_resident/main/main.dart` defines `main`, that definition is shadowed by the definition below.
-export 'package:flutter_resident/main/main.dart';
+// When `file:///var/folders/tn/8hw4jw0x4lb0w8793tzd9cv00000gn/T/flutter_tools.4qys5I/flutter_test_listener.Tpe5Ep/listener.dart` defines `main`, that definition is shadowed by the definition below.
+export 'file:///var/folders/tn/8hw4jw0x4lb0w8793tzd9cv00000gn/T/flutter_tools.4qys5I/flutter_test_listener.Tpe5Ep/listener.dart';
 
-import 'package:flutter_resident/main/main.dart' as entrypoint;
+import 'file:///var/folders/tn/8hw4jw0x4lb0w8793tzd9cv00000gn/T/flutter_tools.4qys5I/flutter_test_listener.Tpe5Ep/listener.dart' as entrypoint;
 import 'dart:io'; // flutter_ignore: dart_io_import.
 import 'package:path_provider_android/path_provider_android.dart';
 import 'package:path_provider_linux/path_provider_linux.dart';
