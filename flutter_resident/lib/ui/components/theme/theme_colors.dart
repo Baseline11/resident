@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 // Brand Colors
 class ThemeColors {
   static const colorLightTintsBlue = Color(0xFF007AFF);
-  static const colorWhite = Color(0xFFFFFFFF);
+  static const colorLightLabelsQuaternary = Color(0xFFDCDCDD);
+  static const colorLightLabelsTertiary = Color(0xFFBFBFC1);
+  static const colorLightBackgroundsPrimary = Color(0xFFFFFFFF);
+  static const colorLightBackgroundsSecondary = Color(0xFFF2F2F7);
 }
 
 // Brand Primary colors

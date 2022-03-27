@@ -64,9 +64,7 @@ class _IosSignUpPageState extends State<IosSignUpPage>
                       Spacer(
                         flex: 1,
                       ),
-                      Headline1(
-                        text: R.strings.signUp.page1Title,
-                      ),
+                      /*
                       if (mediaQuery.viewInsets.bottom == 0)
                         Flexible(
                           flex: 6,
@@ -79,6 +77,10 @@ class _IosSignUpPageState extends State<IosSignUpPage>
                             ),
                           ),
                         ),
+                      */
+                      Headline1(
+                        text: R.strings.signUp.page1Title,
+                      ),
                       NameInput(),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 8),

@@ -36,18 +36,17 @@ class Input extends StatelessWidget {
     this.labelText,
     this.keyboardType,
     this.onChangedFunction,
-    this.enabledBorderColor =
-        Colors.transparent, //colorFunctionalHeavyLightest,
-    this.focusedBorderColor = colorBrandPrimaryDark,
+    this.enabledBorderColor = ThemeColors.colorLightLabelsQuaternary,
+    this.focusedBorderColor = ThemeColors.colorLightLabelsQuaternary,
     this.errorBorderColor = colorFeedbackDangerDark,
     this.errorText,
     this.errorColor = colorFeedbackDangerDark,
-    this.hintColor = colorFunctionalHeavyLight,
+    this.hintColor = ThemeColors.colorLightLabelsTertiary,
     this.suffix,
     this.prefix,
     this.textInputFormatterList,
     this.errorMaxLines,
-    this.height,
+    this.height = 44,
     this.width,
     this.textAlign = TextAlign.left,
     this.initialValue,
@@ -58,7 +57,7 @@ class Input extends StatelessWidget {
   });
 
   Widget get defaultInput {
-    final borderRadius = BorderRadius.circular(25.0);
+    final borderRadius = BorderRadius.circular(10.0);
 
     var enabledBorder = OutlineInputBorder(
       borderSide: BorderSide(color: enabledBorderColor, width: 2.0),
@@ -102,13 +101,13 @@ class Input extends StatelessWidget {
                   ? Text(
                       labelText!,
                       style: TextStyle(
-                        color: colorBrandPrimaryMedium,
+                        color: ThemeColors.colorLightLabelsTertiary,
                         fontSize: fontSizeXXS,
                       ),
                     )
                   : null,
               floatingLabelBehavior: FloatingLabelBehavior.never,
-              fillColor: colorFunctionalSoftMedium,
+              fillColor: ThemeColors.colorLightBackgroundsSecondary,
               prefixIcon: prefix,
               prefixIconConstraints: prefixIconConstraints,
               contentPadding:

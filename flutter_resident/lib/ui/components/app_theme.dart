@@ -15,7 +15,7 @@ ThemeData makeAppTheme() {
     headline1: TextStyle(
       fontSize: 22,
       fontWeight: FontWeight.bold,
-      color: ThemeColors.colorWhite,
+      color: ThemeColors.colorLightBackgroundsPrimary,
     ),
   );
 
