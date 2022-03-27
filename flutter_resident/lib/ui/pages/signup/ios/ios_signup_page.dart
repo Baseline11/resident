@@ -42,6 +42,7 @@ class _IosSignUpPageState extends State<IosSignUpPage>
         mediaQuery.viewInsets.bottom;
 
     return Scaffold(
+      backgroundColor: Theme.of(context).backgroundColor,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => hideKeyboard(context),
@@ -64,7 +65,7 @@ class _IosSignUpPageState extends State<IosSignUpPage>
                         flex: 1,
                       ),
                       Headline1(
-                        text: R.strings.joinUs,
+                        text: R.strings.signUp.page1Title,
                       ),
                       if (mediaQuery.viewInsets.bottom == 0)
                         Flexible(

@@ -13,7 +13,10 @@ ThemeData makeAppTheme() {
 
   final textTheme = TextTheme(
     headline1: TextStyle(
-        fontSize: 30, fontWeight: FontWeight.bold, color: primaryColorDark),
+      fontSize: 22,
+      fontWeight: FontWeight.bold,
+      color: ThemeColors.colorWhite,
+    ),
   );
 
   final inputDecorationTheme = InputDecorationTheme(
@@ -54,7 +57,7 @@ ThemeData makeAppTheme() {
     disabledColor: disableColor,
     dividerColor: dividerColor,
     colorScheme: ColorScheme.light(primary: primaryColor),
-    backgroundColor: colorFunctionalSoftLightest,
+    backgroundColor: ThemeColors.colorLightTintsBlue,
     textTheme: textTheme,
     inputDecorationTheme: inputDecorationTheme,
     buttonTheme: buttonTheme,

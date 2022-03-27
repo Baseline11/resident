@@ -1,4 +1,3 @@
-import 'package:flutter_resident/presentation/mixins/navigation_manager.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test/test.dart';
 
