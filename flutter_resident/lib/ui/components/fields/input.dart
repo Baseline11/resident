@@ -17,17 +17,17 @@ class Input extends StatelessWidget {
   final String? errorText;
   final Color? errorColor;
   final Widget? suffix;
-  final Widget? prefix;
+
   final List<TextInputFormatter>? textInputFormatterList;
   final int? errorMaxLines;
-  final double? height;
-  final double? width;
   final TextAlign textAlign;
   final String? initialValue;
   final TextEditingController? textEditingController;
   final BoxConstraints? prefixIconConstraints;
   final bool? enabled;
   final bool? obscureText;
+  final Widget? prefixIcon;
+  final String? prefixText;
 
   Input({
     this.helperText,
@@ -43,17 +43,16 @@ class Input extends StatelessWidget {
     this.errorColor = colorFeedbackDangerDark,
     this.hintColor = ThemeColors.colorLightLabelsTertiary,
     this.suffix,
-    this.prefix,
+    this.prefixIcon,
     this.textInputFormatterList,
     this.errorMaxLines,
-    this.height = 44,
-    this.width,
     this.textAlign = TextAlign.left,
     this.initialValue,
     this.textEditingController,
     this.prefixIconConstraints,
     this.enabled,
     this.obscureText,
+    this.prefixText,
   });
 
   Widget get defaultInput {
@@ -82,9 +81,8 @@ class Input extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
-          height: height,
-          width: width,
           child: TextFormField(
+            textAlignVertical: TextAlignVertical.bottom,
             obscureText: obscureText ?? false,
             enabled: enabled,
             initialValue: initialValue,
@@ -108,7 +106,8 @@ class Input extends StatelessWidget {
                   : null,
               floatingLabelBehavior: FloatingLabelBehavior.never,
               fillColor: ThemeColors.colorLightBackgroundsSecondary,
-              prefixIcon: prefix,
+              prefixIcon: prefixIcon,
+              prefixText: prefixText,
               prefixIconConstraints: prefixIconConstraints,
               contentPadding:
                   EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
@@ -116,7 +115,7 @@ class Input extends StatelessWidget {
               hintText: hintText,
               hintStyle: TextStyle(color: hintColor, fontSize: fontSizeXXS),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(10),
                 borderSide: BorderSide(),
               ),
               enabledBorder: enabledBorder,

@@ -14,12 +14,14 @@ class EnCa implements Translations {
   String get confirmPassword => 'Confirm password';
   String get dontHaveAnAccount => 'Don\'t have an account?';
   String get email => 'Email';
+  String get firstName => 'First name';
   String get joinUs => 'Join Us!';
   String get enter => 'Enter';
+  String get lastName => 'Last name';
   String get login => 'Login';
-  String get name => 'Name';
   String get password => 'Password';
   String get pleaseWait => 'Please wait...';
+  String get username => 'Username';
   String get reload => 'Reload';
   String get welcomeBack => 'Welcome Back';
 }

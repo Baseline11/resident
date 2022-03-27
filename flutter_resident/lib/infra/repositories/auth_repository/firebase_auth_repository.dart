@@ -52,7 +52,7 @@ class FirebaseAuthRepository implements AuthRepository {
           refreshToken: userCredential.user!.refreshToken!,
           uid: userCredential.user!.uid,
           email: params.email,
-          name: params.name,
+          name: params.firstName,
         );
       } else {
         throw Exception();
@@ -109,8 +109,8 @@ class FirebaseRemoteAddAccountParams {
 
   factory FirebaseRemoteAddAccountParams.fromDomain(AddAccountParams params) =>
       FirebaseRemoteAddAccountParams(
-        name: params.name,
+        name: params.firstName,
         email: params.email,
-        password: params.password,
+        password: '', // params.password,
       );
 }

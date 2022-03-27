@@ -6,25 +6,18 @@ import './../../../../helpers/helpers.dart';
 
 import './../../signup_presenter.dart';
 
-class NameInput extends StatelessWidget {
+class FirstNameInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final presenter = Provider.of<SignUpPresenter>(context);
     return StreamBuilder<UIError?>(
-      stream: presenter.nameErrorStream,
+      stream: presenter.firstNameErrorStream,
       builder: (context, snapshot) {
         return Input(
-          onChangedFunction: presenter.validateName,
-          hintText: 'Matheus',
-          labelText: R.strings.name,
+          onChangedFunction: presenter.validateFirstName,
+          hintText: 'Paul',
+          labelText: R.strings.firstName,
           errorText: snapshot.data?.description,
-          prefix: Padding(
-            padding: EdgeInsets.only(left: 20, right: 10),
-            child: Icon(
-              Icons.person,
-              color: Theme.of(context).primaryColorLight,
-            ),
-          ),
           keyboardType: TextInputType.name,
         );
       },

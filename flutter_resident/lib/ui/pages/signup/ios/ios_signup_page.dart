@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../../../helpers/helpers.dart';
@@ -58,7 +57,7 @@ class _IosSignUpPageState extends State<IosSignUpPage>
                 child: Container(
                   padding: const EdgeInsets.all(16),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    //crossAxisAlignment: CrossAxisAlignment.stretch,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Spacer(
@@ -81,12 +80,16 @@ class _IosSignUpPageState extends State<IosSignUpPage>
                       Headline1(
                         text: R.strings.signUp.page1Title,
                       ),
-                      NameInput(),
                       Padding(
                         padding: EdgeInsets.symmetric(vertical: 8),
-                        child: EmailInput(),
+                        child: UsernameInput(),
                       ),
-                      PasswordInput(),
+                      FirstNameInput(),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8),
+                        child: LastNameInput(),
+                      ),
+                      EmailInput(),
                       Flexible(
                         child: SizedBox(
                           height: 32,

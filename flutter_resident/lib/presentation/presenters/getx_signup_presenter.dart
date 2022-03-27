@@ -15,17 +15,20 @@ class GetxSignUpPresenter extends GetxController
   final SaveCurrentAccount saveCurrentAccount;
   final AddAccount addAccount;
 
-  String? _name;
+  String? _username;
+  String? _firstName;
+  String? _lastName;
   String? _email;
-  String? _password;
 
-  var _nameError = Rx<UIError?>(null);
+  var _usernameError = Rx<UIError?>(null);
+  var _firstNameError = Rx<UIError?>(null);
+  var _lastNameError = Rx<UIError?>(null);
   var _emailError = Rx<UIError?>(null);
-  var _passwordError = Rx<UIError?>(null);
 
-  Stream<UIError?> get nameErrorStream => _nameError.stream;
+  Stream<UIError?> get usernameErrorStream => _usernameError.stream;
+  Stream<UIError?> get firstNameErrorStream => _firstNameError.stream;
+  Stream<UIError?> get lastNameErrorStream => _firstNameError.stream;
   Stream<UIError?> get emailErrorStream => _emailError.stream;
-  Stream<UIError?> get passwordErrorStream => _passwordError.stream;
 
   GetxSignUpPresenter({
     required this.validation,
@@ -33,9 +36,21 @@ class GetxSignUpPresenter extends GetxController
     required this.addAccount,
   });
 
-  void validateName(String name) {
-    _name = name;
-    _nameError.value = _validateField('name');
+  void validateUsername(String username) {
+    _username = username;
+    _usernameError.value = _validateField('username');
+    _validateForm();
+  }
+
+  void validateFirstName(String firstName) {
+    _firstName = firstName;
+    _firstNameError.value = _validateField('first_name');
+    _validateForm();
+  }
+
+  void validateLastName(String lastName) {
+    _lastName = lastName;
+    _lastNameError.value = _validateField('last_name');
     _validateForm();
   }
 
@@ -45,17 +60,12 @@ class GetxSignUpPresenter extends GetxController
     _validateForm();
   }
 
-  void validatePassword(String password) {
-    _password = password;
-    _passwordError.value = _validateField('password');
-    _validateForm();
-  }
-
   UIError? _validateField(String field) {
     final formData = {
-      'name': _name,
+      'username': _username,
+      'first_name': _firstName,
+      'last_name': _firstName,
       'email': _email,
-      'password': _password,
     };
     final error = validation.validate(field: field, input: formData);
     switch (error) {
@@ -69,12 +79,14 @@ class GetxSignUpPresenter extends GetxController
   }
 
   void _validateForm() {
-    isFormValid = _emailError.value == null &&
-        _nameError.value == null &&
-        _passwordError.value == null &&
-        _name != null &&
-        _email != null &&
-        _password != null;
+    isFormValid = _usernameError.value == null &&
+        _firstNameError.value == null &&
+        _lastNameError.value == null &&
+        _emailError.value == null &&
+        _username != null &&
+        _firstName != null &&
+        _lastName != null &&
+        _email != null;
   }
 
   Future<void> signUp() async {
@@ -83,9 +95,10 @@ class GetxSignUpPresenter extends GetxController
       isLoading = true;
       final account = await addAccount.add(
         AddAccountParams(
-          name: _name!,
+          username: _username!,
+          firstName: _firstName!,
+          lastName: _firstName!,
           email: _email!,
-          password: _password!,
         ),
       );
       await saveCurrentAccount.save(account);

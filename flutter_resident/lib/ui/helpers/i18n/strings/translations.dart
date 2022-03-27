@@ -17,9 +17,11 @@ abstract class Translations {
   String get enter;
   String get joinUs;
   String get login;
-  String get name;
+  String get firstName;
+  String get lastName;
   String get password;
   String get pleaseWait;
+  String get username;
   String get reload;
   String get welcomeBack;
 }
