@@ -7,21 +7,24 @@ import 'package:flutter_resident/ui/helpers/helpers.dart';
 import 'package:flutter_resident/ui/pages/pages.dart';
 
 class SignUpPresenterSpy extends Mock implements SignUpPresenter {
-  final nameErrorController = StreamController<UIError?>();
+  final usernameErrorController = StreamController<UIError?>();
+  final firstNameErrorController = StreamController<UIError?>();
+  final lastNameErrorController = StreamController<UIError?>();
   final emailErrorController = StreamController<UIError?>();
-  final passwordErrorController = StreamController<UIError?>();
   final mainErrorController = StreamController<UIError?>();
   final navigateToController = StreamController<NavigationState?>();
   final isFormValidController = StreamController<bool>();
   final isLoadingController = StreamController<bool>();
 
   SignUpPresenterSpy() {
-    when(() => this.nameErrorStream)
-        .thenAnswer((_) => nameErrorController.stream);
+    when(() => this.usernameErrorStream)
+        .thenAnswer((_) => usernameErrorController.stream);
+    when(() => this.firstNameErrorStream)
+        .thenAnswer((_) => firstNameErrorController.stream);
+    when(() => this.lastNameErrorStream)
+        .thenAnswer((_) => lastNameErrorController.stream);
     when(() => this.emailErrorStream)
         .thenAnswer((_) => emailErrorController.stream);
-    when(() => this.passwordErrorStream)
-        .thenAnswer((_) => passwordErrorController.stream);
     when(() => this.mainErrorStream)
         .thenAnswer((_) => mainErrorController.stream);
     when(() => this.navigateToStream)
@@ -34,14 +37,17 @@ class SignUpPresenterSpy extends Mock implements SignUpPresenter {
     when(() => this.signUp()).thenAnswer((_) async => _);
   }
 
-  void emitNameError(UIError error) => nameErrorController.add(error);
-  void emitNameValid() => nameErrorController.add(null);
+  void emitUsernameError(UIError error) => usernameErrorController.add(error);
+  void emitUsernameValid() => usernameErrorController.add(null);
+
+  void emitFirstNameError(UIError error) => firstNameErrorController.add(error);
+  void emitFirstNameValid() => firstNameErrorController.add(null);
+
+  void emitLastNameError(UIError error) => lastNameErrorController.add(error);
+  void emitLastNameValid() => lastNameErrorController.add(null);
 
   void emitEmailError(UIError error) => emailErrorController.add(error);
   void emitEmailValid() => emailErrorController.add(null);
-
-  void emitPasswordError(UIError error) => passwordErrorController.add(error);
-  void emitPasswordValid() => passwordErrorController.add(null);
 
   void emitFormError() => isFormValidController.add(false);
   void emitFormValid() => isFormValidController.add(true);
@@ -54,9 +60,10 @@ class SignUpPresenterSpy extends Mock implements SignUpPresenter {
       navigateToController.add(navigationState);
 
   void dispose() {
-    nameErrorController.close();
+    usernameErrorController.close();
+    lastNameErrorController.close();
+    firstNameErrorController.close();
     emailErrorController.close();
-    passwordErrorController.close();
     isFormValidController.close();
     isLoadingController.close();
     mainErrorController.close();
