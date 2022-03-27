@@ -1,6 +1,8 @@
-import './translations.dart';
+import './strings.dart';
 
 class PtBr implements Translations {
+  SignUpTranslation signUp = PtBrSignUp();
+
   String get msgEmailInUse => 'O email já está em uso';
   String get msgInvalidCredentials => 'Credenciais inválidas';
   String get msgInvalidField => 'Campo inválido';
@@ -20,7 +22,5 @@ class PtBr implements Translations {
   String get password => 'Senha';
   String get pleaseWait => 'Por favor, aguarde...';
   String get reload => 'Recarregar';
-  String get flutter_resident => 'Enquetes';
-  String get signUp => 'Registre-se';
   String get welcomeBack => 'Bem-vinde de Volta';
 }

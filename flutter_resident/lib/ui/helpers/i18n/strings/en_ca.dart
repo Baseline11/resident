@@ -1,6 +1,8 @@
-import './translations.dart';
+import './strings.dart';
 
-class EnUs implements Translations {
+class EnCa implements Translations {
+  SignUpTranslation signUp = EnCaSignUp();
+
   String get msgEmailInUse => 'The email is in use';
   String get msgInvalidCredentials => 'Invalid Credentials';
   String get msgInvalidField => 'Invalid Field';
@@ -19,7 +21,5 @@ class EnUs implements Translations {
   String get password => 'Password';
   String get pleaseWait => 'Please wait...';
   String get reload => 'Reload';
-  String get flutter_resident => 'Surveys';
-  String get signUp => 'Sign up';
   String get welcomeBack => 'Welcome Back';
 }

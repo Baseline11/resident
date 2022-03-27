@@ -19,7 +19,7 @@ class SignUpButton extends StatelessWidget {
       builder: (context, snapshot) {
         return PrimaryButton(
           onPressed: snapshot.data == true ? presenter.signUp : null,
-          buttonText: R.strings.signUp.toUpperCase(),
+          buttonText: R.strings.signUp.page1ButtonText,
           overlayColor: colorBrandPrimaryDarkest,
           backgroundColor: colorBrandPrimaryDark,
           backgroundDisabledColor: colorBrandPrimaryLight,

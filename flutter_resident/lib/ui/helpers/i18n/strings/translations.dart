@@ -1,4 +1,8 @@
+import './signup/signup.dart';
+
 abstract class Translations {
+  SignUpTranslation signUp = EnCaSignUp();
+
   String get msgEmailInUse;
   String get msgInvalidCredentials;
   String get msgInvalidField;
@@ -17,7 +21,5 @@ abstract class Translations {
   String get password;
   String get pleaseWait;
   String get reload;
-  String get signUp;
-  String get flutter_resident;
   String get welcomeBack;
 }
