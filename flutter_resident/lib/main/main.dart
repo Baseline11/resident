@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 
 import './../ui/components/components.dart';
 import './../ui/helpers/helpers.dart';
+import './../ui/pages/pages.dart';
 import './factories/factories.dart';
 
 void main() {
@@ -24,9 +25,13 @@ class App extends StatelessWidget {
       title: 'Resident',
       debugShowCheckedModeBanner: false,
       theme: makeAppTheme(),
-      initialRoute: '/',
+      initialRoute: SplashPage.routeName,
       getPages: [
-        GetPage(name: '/', page: makeSplashPage, transition: Transition.fade),
+        GetPage(
+          name: SplashPage.routeName,
+          page: makeSplashPage,
+          transition: Transition.fade,
+        ),
         GetPage(
           name: '/signup',
           page: makeSignUpPage,

@@ -89,7 +89,7 @@ class GetxSignUpPresenter extends GetxController
         ),
       );
       await saveCurrentAccount.save(account);
-      navigateTo = NavigationState(route: '/flutter_resident', clear: true);
+      navigateTo = NavigationState(route: '/home', clear: true);
     } on DomainError catch (error) {
       switch (error) {
         case DomainError.emailInUse:

@@ -4,7 +4,7 @@ import '../../../../ui/pages/pages.dart';
 import '../../factories.dart';
 
 Widget makeSplashPage() {
-  return SplashPage(
+  return IosSplashPage(
     presenter: makeGetxSplashPresenter(),
   );
 }
