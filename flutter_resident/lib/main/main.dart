@@ -33,7 +33,7 @@ class App extends StatelessWidget {
           transition: Transition.fade,
         ),
         GetPage(
-          name: '/signup',
+          name: SignUpPage.routeName,
           page: makeSignUpPage,
         ),
       ],

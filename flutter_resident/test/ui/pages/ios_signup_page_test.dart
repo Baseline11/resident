@@ -18,7 +18,7 @@ void main() {
   Future<void> loadPage(WidgetTester tester) async {
     presenter = SignUpPresenterSpy();
     await tester.pumpWidget(
-        makePage(path: '/signup', page: () => SignUpPage(presenter)));
+        makePage(path: '/signup', page: () => IosSignUpPage(presenter)));
   }
 
   tearDown(() {
