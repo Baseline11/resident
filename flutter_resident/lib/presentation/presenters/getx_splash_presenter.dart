@@ -14,7 +14,7 @@ class GetxSplashPresenter extends GetxController
   GetxSplashPresenter(
       {required this.loadCurrentAccount, required this.initFirebase});
 
-  Future<void> checkAccount({int durationInSeconds = 2}) async {
+  Future<void> checkAccount({int durationInSeconds = 3}) async {
     await Future.delayed(
       Duration(
         seconds: durationInSeconds,

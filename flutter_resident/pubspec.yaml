@@ -60,4 +60,3 @@ flutter_icons:
 # 3) flutter pub run flutter_native_splash:create
 flutter_native_splash:
   color: "#007AFF"
-  image: lib/ui/assets/images/brand.png

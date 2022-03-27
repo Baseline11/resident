@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import './../../components/theme/theme.dart';
 import './../../helpers/helpers.dart';
 import './../../mixins/mixins.dart';
 
+import './../../components/assets/assets.dart';
 import './splash.dart';
 
 class SplashPage extends StatefulWidget {
@@ -31,9 +33,11 @@ class _SplashPageState extends State<SplashPage> with NavigationManager {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: colorBrandPrimaryMedium,
+      backgroundColor: ThemeColors.colorLightTintsBlue,
       body: Center(
-        child: CircularProgressIndicator(),
+        child: SvgPicture.asset(
+          SplashAssets.brandLogoSvg,
+        ),
       ),
     );
   }

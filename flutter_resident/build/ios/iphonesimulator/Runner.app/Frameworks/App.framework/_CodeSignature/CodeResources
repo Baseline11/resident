@@ -10,7 +10,7 @@
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		s7fxSZWni40U6W/J272QtF8AKfE=
+		tqsHoD7A6Sj3+NjvDNijQ6eedT0=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -30,11 +30,11 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		KVOgCYWqVv0UhUCntbXHW094Xpo=
+		BkeyFophBCFvee3Mpa9O0YBGICg=
 		</data>
 		<key>flutter_assets/lib/ui/assets/.DS_Store</key>
 		<data>
-		wm55JLII4L9yEmBXN4XqcBIVsJk=
+		OvekAO03C154vfeVeSk9WIx56hU=
 		</data>
 		<key>flutter_assets/lib/ui/assets/icon/.DS_Store</key>
 		<data>
@@ -42,11 +42,7 @@
 		</data>
 		<key>flutter_assets/lib/ui/assets/images/.DS_Store</key>
 		<data>
-		MFh8gYD6a8XZ6gHt0xZB2NXJs70=
-		</data>
-		<key>flutter_assets/lib/ui/assets/images/brand.png</key>
-		<data>
-		eeRSwzc6KqpyTfo3kPe5yiyZLVw=
+		89bxAZNrz66HGAiw0/f/GMSH7xQ=
 		</data>
 		<key>flutter_assets/lib/ui/assets/images/brand.svg</key>
 		<data>
@@ -68,6 +64,14 @@
 		<data>
 		H3eEBqUkIydpfG0dlSja7nHQOyM=
 		</data>
+		<key>flutter_assets/lib/ui/assets/images/splash_logo.png</key>
+		<data>
+		7RRsAEQWBklJ7HNGH8O4niyxf48=
+		</data>
+		<key>flutter_assets/lib/ui/assets/images/splash_logo.svg</key>
+		<data>
+		7ZSLr6FTOEPAIKKd4smVBfs5jBw=
+		</data>
 		<key>flutter_assets/lib/ui/assets/images/survey.svg</key>
 		<data>
 		iWgxPICAnQaZbaybJfRAIyXzR1o=
@@ -87,7 +91,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			bNPFuS0U8seLvlqsn5YsIdO7etW4hT2zMGCv526epTo=
+			qrktm1R5QDtTph5fHwOKkVADqlllJpCBbZtfrWPDuFU=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -122,14 +126,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			oDA5E0up9DxEGG12MNK1D8a1ETex5asTD58bz68gI+c=
-			</data>
-		</dict>
-		<key>flutter_assets/lib/ui/assets/images/brand.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			HFuXKa577YcXq8KkEO+vZeM6iIPmwT7XQPaS/o6CTCI=
+			98njYU3jbM5w42mleqPgywzSVKbRCrJwUDGcPJcD29A=
 			</data>
 		</dict>
 		<key>flutter_assets/lib/ui/assets/images/brand.svg</key>
@@ -165,6 +162,20 @@
 			<key>hash2</key>
 			<data>
 			hacj8bKQ9d+yHq5t8srePnfbK6nSitEPEUELOwoy+PA=
+			</data>
+		</dict>
+		<key>flutter_assets/lib/ui/assets/images/splash_logo.png</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ByF0Ix72m9wb0R3KBSbFjggiAzzvgLZ8B6Fk5FwFUqM=
+			</data>
+		</dict>
+		<key>flutter_assets/lib/ui/assets/images/splash_logo.svg</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			H4WZKeMNcnCv8GoN0mbNCcH1BEaQssTa7v+bFxNuDFc=
 			</data>
 		</dict>
 		<key>flutter_assets/lib/ui/assets/images/survey.svg</key>
