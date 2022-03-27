@@ -27,7 +27,7 @@ class GetxSignUpPresenter extends GetxController
 
   Stream<UIError?> get usernameErrorStream => _usernameError.stream;
   Stream<UIError?> get firstNameErrorStream => _firstNameError.stream;
-  Stream<UIError?> get lastNameErrorStream => _firstNameError.stream;
+  Stream<UIError?> get lastNameErrorStream => _lastNameError.stream;
   Stream<UIError?> get emailErrorStream => _emailError.stream;
 
   GetxSignUpPresenter({
@@ -64,7 +64,7 @@ class GetxSignUpPresenter extends GetxController
     final formData = {
       'username': _username,
       'first_name': _firstName,
-      'last_name': _firstName,
+      'last_name': _lastName,
       'email': _email,
     };
     final error = validation.validate(field: field, input: formData);
@@ -97,7 +97,7 @@ class GetxSignUpPresenter extends GetxController
         AddAccountParams(
           username: _username!,
           firstName: _firstName!,
-          lastName: _firstName!,
+          lastName: _lastName!,
           email: _email!,
         ),
       );

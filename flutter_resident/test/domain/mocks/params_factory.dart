@@ -3,9 +3,10 @@ import 'package:flutter_resident/domain/domain.dart';
 
 class ParamsFactory {
   static AddAccountParams makeAddAccount() => AddAccountParams(
-        name: faker.person.name(),
+        username: faker.internet.userName(),
+        firstName: faker.person.firstName(),
+        lastName: faker.person.lastName(),
         email: faker.internet.email(),
-        password: faker.internet.password(),
       );
 
   static AuthenticationParams makeAuthentication() => AuthenticationParams(

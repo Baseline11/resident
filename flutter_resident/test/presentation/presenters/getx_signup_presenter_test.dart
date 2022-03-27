@@ -16,15 +16,18 @@ void main() {
   late AddAccountSpy addAccount;
   late ValidationSpy validation;
   late SaveCurrentAccountSpy saveCurrentAccount;
-  late String name;
+  late String username;
+  late String firstName;
+  late String lastName;
   late String email;
-  late String password;
+
   late AccountEntity account;
 
   setUp(() {
-    name = faker.person.name();
+    username = faker.internet.userName();
+    firstName = faker.person.firstName();
+    lastName = faker.person.lastName();
     email = faker.internet.email();
-    password = faker.internet.password();
     account = EntityFactory.makeAccount();
     validation = ValidationSpy();
     addAccount = AddAccountSpy();
@@ -42,193 +45,274 @@ void main() {
     registerFallbackValue(EntityFactory.makeAccount());
   });
 
-  test('Should call Validation with correct email', () {
-    final formData = {
-      'name': null,
-      'email': email,
-      'password': null,
-    };
+  group('Username field', () {
+    test('Should call Validation with correct username', () {
+      final formData = {
+        'username': username,
+        'first_name': null,
+        'last_name': null,
+        'email': null,
+      };
 
-    sut.validateEmail(email);
+      sut.validateUsername(username);
 
-    verify(
-      () => validation.validate(
-        field: 'email',
-        input: formData,
-      ),
-    ).called(1);
+      verify(
+        () => validation.validate(
+          field: 'username',
+          input: formData,
+        ),
+      ).called(1);
+    });
+
+    test('Should emit requiredFieldError if username is empty', () {
+      validation.mockValidationError(value: ValidationError.requiredField);
+
+      sut.usernameErrorStream.listen(
+        expectAsync1(
+          (error) => expect(error, UIError.requiredField),
+        ),
+      );
+      sut.isFormValidStream.listen(
+        expectAsync1(
+          (isValid) => expect(isValid, false),
+        ),
+      );
+
+      sut.validateUsername(username);
+      sut.validateUsername(username);
+    });
+
+    test('Should emit username error null if validation succeeds', () {
+      sut.usernameErrorStream.listen(
+        expectAsync1(
+          (error) => expect(error, null),
+        ),
+      );
+      sut.isFormValidStream.listen(
+        expectAsync1(
+          (isValid) => expect(isValid, false),
+        ),
+      );
+
+      sut.validateUsername(username);
+      sut.validateUsername(username);
+    });
   });
 
-  test('Should emit invalidFieldError if email is invalid', () {
-    validation.mockValidationError(value: ValidationError.invalidField);
+  group('First name field', () {
+    test('Should call Validation with correct first name', () {
+      final formData = {
+        'username': null,
+        'first_name': firstName,
+        'last_name': null,
+        'email': null,
+      };
 
-    sut.emailErrorStream.listen(
-      expectAsync1(
-        (error) => expect(error, UIError.invalidField),
-      ),
-    );
-    sut.isFormValidStream.listen(
-      expectAsync1(
-        (isValid) => expect(isValid, false),
-      ),
-    );
+      sut.validateFirstName(firstName);
 
-    sut.validateEmail(email);
-    sut.validateEmail(email);
+      verify(
+        () => validation.validate(
+          field: 'first_name',
+          input: formData,
+        ),
+      ).called(1);
+    });
+
+    test('Should emit invalidFieldError if first name is invalid', () {
+      validation.mockValidationError(value: ValidationError.invalidField);
+
+      sut.firstNameErrorStream.listen(
+        expectAsync1(
+          (error) => expect(error, UIError.invalidField),
+        ),
+      );
+      sut.isFormValidStream.listen(
+        expectAsync1(
+          (isValid) => expect(isValid, false),
+        ),
+      );
+
+      sut.validateFirstName(firstName);
+      sut.validateFirstName(firstName);
+    });
+
+    test('Should emit requiredFieldError if first name is empty', () {
+      validation.mockValidationError(value: ValidationError.requiredField);
+
+      sut.firstNameErrorStream.listen(
+        expectAsync1(
+          (error) => expect(error, UIError.requiredField),
+        ),
+      );
+      sut.isFormValidStream.listen(
+        expectAsync1(
+          (isValid) => expect(isValid, false),
+        ),
+      );
+
+      sut.validateFirstName(firstName);
+      sut.validateFirstName(firstName);
+    });
+
+    test('Should emit null if validation succeeds', () {
+      sut.firstNameErrorStream.listen(
+        expectAsync1(
+          (error) => expect(error, null),
+        ),
+      );
+      sut.isFormValidStream.listen(
+        expectAsync1(
+          (isValid) => expect(isValid, false),
+        ),
+      );
+
+      sut.validateFirstName(firstName);
+      sut.validateFirstName(firstName);
+    });
   });
 
-  test('Should emit requiredFieldError if email is empty', () {
-    validation.mockValidationError(value: ValidationError.requiredField);
+  group('Last name field', () {
+    test('Should call Validation with correct last name', () {
+      final formData = {
+        'username': null,
+        'first_name': null,
+        'last_name': lastName,
+        'email': null,
+      };
 
-    sut.emailErrorStream.listen(
-      expectAsync1(
-        (error) => expect(error, UIError.requiredField),
-      ),
-    );
-    sut.isFormValidStream.listen(
-      expectAsync1(
-        (isValid) => expect(isValid, false),
-      ),
-    );
+      sut.validateLastName(lastName);
 
-    sut.validateEmail(email);
-    sut.validateEmail(email);
+      verify(
+        () => validation.validate(
+          field: 'last_name',
+          input: formData,
+        ),
+      ).called(1);
+    });
+
+    test('Should emit invalidFieldError if last name is invalid', () {
+      validation.mockValidationError(value: ValidationError.invalidField);
+
+      sut.lastNameErrorStream.listen(
+        expectAsync1(
+          (error) => expect(error, UIError.invalidField),
+        ),
+      );
+      sut.isFormValidStream.listen(
+        expectAsync1(
+          (isValid) => expect(isValid, false),
+        ),
+      );
+
+      sut.validateLastName(lastName);
+      sut.validateLastName(lastName);
+    });
+
+    test('Should emit requiredFieldError if last name is empty', () {
+      validation.mockValidationError(value: ValidationError.requiredField);
+
+      sut.lastNameErrorStream.listen(
+        expectAsync1(
+          (error) => expect(error, UIError.requiredField),
+        ),
+      );
+      sut.isFormValidStream.listen(
+        expectAsync1(
+          (isValid) => expect(isValid, false),
+        ),
+      );
+
+      sut.validateLastName(firstName);
+      sut.validateLastName(firstName);
+    });
+
+    test('Should emit null if validation succeeds', () {
+      sut.lastNameErrorStream.listen(
+        expectAsync1(
+          (error) => expect(error, null),
+        ),
+      );
+      sut.isFormValidStream.listen(
+        expectAsync1(
+          (isValid) => expect(isValid, false),
+        ),
+      );
+
+      sut.validateLastName(lastName);
+      sut.validateLastName(lastName);
+    });
   });
 
-  test('Should emit null if validation succeeds', () {
-    sut.emailErrorStream.listen(
-      expectAsync1(
-        (error) => expect(error, null),
-      ),
-    );
-    sut.isFormValidStream.listen(
-      expectAsync1(
-        (isValid) => expect(isValid, false),
-      ),
-    );
+  group('Email field', () {
+    test('Should call Validation with correct email', () {
+      final formData = {
+        'username': null,
+        'first_name': null,
+        'last_name': null,
+        'email': email,
+      };
 
-    sut.validateEmail(email);
-    sut.validateEmail(email);
-  });
+      sut.validateEmail(email);
 
-  test('Should call Validation with correct name', () {
-    final formData = {
-      'name': name,
-      'email': null,
-      'password': null,
-    };
+      verify(
+        () => validation.validate(
+          field: 'email',
+          input: formData,
+        ),
+      ).called(1);
+    });
 
-    sut.validateName(name);
+    test('Should emit invalidFieldError if email is invalid', () {
+      validation.mockValidationError(value: ValidationError.invalidField);
 
-    verify(
-      () => validation.validate(
-        field: 'name',
-        input: formData,
-      ),
-    ).called(1);
-  });
+      sut.emailErrorStream.listen(
+        expectAsync1(
+          (error) => expect(error, UIError.invalidField),
+        ),
+      );
+      sut.isFormValidStream.listen(
+        expectAsync1(
+          (isValid) => expect(isValid, false),
+        ),
+      );
 
-  test('Should emit invalidFieldError if name is invalid', () {
-    validation.mockValidationError(value: ValidationError.invalidField);
+      sut.validateEmail(email);
+      sut.validateEmail(email);
+    });
 
-    sut.nameErrorStream.listen(
-      expectAsync1(
-        (error) => expect(error, UIError.invalidField),
-      ),
-    );
-    sut.isFormValidStream.listen(
-      expectAsync1(
-        (isValid) => expect(isValid, false),
-      ),
-    );
+    test('Should emit requiredFieldError if email is empty', () {
+      validation.mockValidationError(value: ValidationError.requiredField);
 
-    sut.validateName(name);
-    sut.validateName(name);
-  });
+      sut.emailErrorStream.listen(
+        expectAsync1(
+          (error) => expect(error, UIError.requiredField),
+        ),
+      );
+      sut.isFormValidStream.listen(
+        expectAsync1(
+          (isValid) => expect(isValid, false),
+        ),
+      );
 
-  test('Should emit requiredFieldError if name is empty', () {
-    validation.mockValidationError(value: ValidationError.requiredField);
+      sut.validateEmail(email);
+      sut.validateEmail(email);
+    });
 
-    sut.nameErrorStream.listen(
-      expectAsync1(
-        (error) => expect(error, UIError.requiredField),
-      ),
-    );
-    sut.isFormValidStream.listen(
-      expectAsync1(
-        (isValid) => expect(isValid, false),
-      ),
-    );
+    test('Should emit null if validation succeeds', () {
+      sut.emailErrorStream.listen(
+        expectAsync1(
+          (error) => expect(error, null),
+        ),
+      );
+      sut.isFormValidStream.listen(
+        expectAsync1(
+          (isValid) => expect(isValid, false),
+        ),
+      );
 
-    sut.validateName(name);
-    sut.validateName(name);
-  });
-
-  test('Should emit null if validation succeeds', () {
-    sut.nameErrorStream.listen(
-      expectAsync1(
-        (error) => expect(error, null),
-      ),
-    );
-    sut.isFormValidStream.listen(
-      expectAsync1(
-        (isValid) => expect(isValid, false),
-      ),
-    );
-
-    sut.validateName(name);
-    sut.validateName(name);
-  });
-
-  test('Should call Validation with correct password', () {
-    final formData = {
-      'name': null,
-      'email': null,
-      'password': password,
-    };
-
-    sut.validatePassword(password);
-
-    verify(
-      () => validation.validate(
-        field: 'password',
-        input: formData,
-      ),
-    ).called(1);
-  });
-
-  test('Should emit requiredFieldError if password is empty', () {
-    validation.mockValidationError(value: ValidationError.requiredField);
-
-    sut.passwordErrorStream.listen(
-      expectAsync1(
-        (error) => expect(error, UIError.requiredField),
-      ),
-    );
-    sut.isFormValidStream.listen(
-      expectAsync1(
-        (isValid) => expect(isValid, false),
-      ),
-    );
-
-    sut.validatePassword(password);
-    sut.validatePassword(password);
-  });
-
-  test('Should emit password error null if validation succeeds', () {
-    sut.passwordErrorStream.listen(
-      expectAsync1(
-        (error) => expect(error, null),
-      ),
-    );
-    sut.isFormValidStream.listen(
-      expectAsync1(
-        (isValid) => expect(isValid, false),
-      ),
-    );
-
-    sut.validatePassword(password);
-    sut.validatePassword(password);
+      sut.validateEmail(email);
+      sut.validateEmail(email);
+    });
   });
 
   test('Should disable form button if any field is invalid', () {
@@ -242,21 +326,7 @@ void main() {
     );
 
     sut.validateEmail(email);
-    sut.validatePassword(password);
-  });
-
-  test('Should disable form button if any field is invalid', () {
-    validation.mockValidationError(
-        field: 'email', value: ValidationError.invalidField);
-
-    sut.isFormValidStream.listen(
-      expectAsync1(
-        (isValid) => expect(isValid, false),
-      ),
-    );
-
-    sut.validateEmail(email);
-    sut.validatePassword(password);
+    sut.validateUsername(username);
   });
 
   test('Should enable form button if all fields are valid', () async {
@@ -265,35 +335,40 @@ void main() {
       emitsInOrder([false, true]),
     );
 
-    sut.validateName(name);
+    sut.validateUsername(username);
+    await Future.delayed(Duration.zero);
+    sut.validateFirstName(firstName);
+    await Future.delayed(Duration.zero);
+    sut.validateLastName(lastName);
     await Future.delayed(Duration.zero);
     sut.validateEmail(email);
-    await Future.delayed(Duration.zero);
-    sut.validatePassword(password);
   });
 
   test('Should call AddAccount with correct values', () async {
-    sut.validateName(name);
+    sut.validateUsername(username);
+    sut.validateFirstName(firstName);
+    sut.validateLastName(lastName);
     sut.validateEmail(email);
-    sut.validatePassword(password);
 
     await sut.signUp();
 
     verify(
       () => addAccount.add(
         AddAccountParams(
-          name: name,
+          username: username,
+          firstName: firstName,
+          lastName: lastName,
           email: email,
-          password: password,
         ),
       ),
     ).called(1);
   });
 
   test('Should call SaveCurrentAccount with correct value', () async {
-    sut.validateName(name);
+    sut.validateUsername(username);
+    sut.validateFirstName(firstName);
+    sut.validateLastName(lastName);
     sut.validateEmail(email);
-    sut.validatePassword(password);
 
     await sut.signUp();
 
@@ -304,9 +379,10 @@ void main() {
 
   test('Should emit UnexpectedError if SaveCurrentAccount fails', () async {
     saveCurrentAccount.mockSaveCurrentAccountError();
-    sut.validateName(name);
+    sut.validateUsername(username);
+    sut.validateFirstName(firstName);
+    sut.validateLastName(lastName);
     sut.validateEmail(email);
-    sut.validatePassword(password);
 
     expectLater(
       sut.mainErrorStream,
@@ -321,9 +397,10 @@ void main() {
   });
 
   test('Should emit correct events on AddAccount success', () async {
-    sut.validateName(name);
+    sut.validateUsername(username);
+    sut.validateFirstName(firstName);
+    sut.validateLastName(lastName);
     sut.validateEmail(email);
-    sut.validatePassword(password);
 
     expectLater(
       sut.mainErrorStream,
@@ -339,9 +416,10 @@ void main() {
 
   test('Should emit correct events on EmailInUseError', () async {
     addAccount.mockAddAccountError(DomainError.emailInUse);
-    sut.validateName(name);
+    sut.validateUsername(username);
+    sut.validateFirstName(firstName);
+    sut.validateLastName(lastName);
     sut.validateEmail(email);
-    sut.validatePassword(password);
 
     expectLater(
       sut.mainErrorStream,
@@ -357,9 +435,10 @@ void main() {
 
   test('Should emit correct events on UnexpectedError', () async {
     addAccount.mockAddAccountError(DomainError.unexpected);
-    sut.validateName(name);
+    sut.validateUsername(username);
+    sut.validateFirstName(firstName);
+    sut.validateLastName(lastName);
     sut.validateEmail(email);
-    sut.validatePassword(password);
 
     expectLater(
       sut.mainErrorStream,
@@ -374,9 +453,10 @@ void main() {
   });
 
   test('Should change page on success', () async {
-    sut.validateName(name);
+    sut.validateUsername(username);
+    sut.validateFirstName(firstName);
+    sut.validateLastName(lastName);
     sut.validateEmail(email);
-    sut.validatePassword(password);
 
     sut.navigateToStream.listen(
       expectAsync1(
