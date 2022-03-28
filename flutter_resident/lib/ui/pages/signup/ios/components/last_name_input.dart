@@ -15,7 +15,7 @@ class LastNameInput extends StatelessWidget {
       builder: (context, snapshot) {
         return Input(
           onChangedFunction: presenter.validateLastName,
-          hintText: 'Paul',
+          hintText: 'Jean-Luc',
           labelText: R.strings.lastName,
           errorText: snapshot.data?.description,
           keyboardType: TextInputType.name,
