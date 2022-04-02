@@ -21,8 +21,9 @@ dependencies:
   cloud_firestore:
   firebase_core:
   firebase_auth:
-  flutter_svg:
+  flutter_svg: 
   firebase_messaging:
+  auto_size_text:
 
 dev_dependencies:
   flutter_test:

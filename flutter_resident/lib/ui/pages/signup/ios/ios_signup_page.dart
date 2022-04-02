@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_resident/ui/pages/signup/components/register_slider.dart';
 import 'package:provider/provider.dart';
 
 import '../../../helpers/helpers.dart';
@@ -60,6 +61,10 @@ class _IosSignUpPageState extends State<IosSignUpPage>
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 8),
+                      child: RegisterSlider(),
+                    ),
                     Headline1(
                       text: R.strings.signUp.page1Title,
                     ),
