@@ -43,6 +43,7 @@ flutter:
   assets:
     - lib/ui/assets/
     - lib/ui/assets/images/
+    - lib/ui/assets/icon/
 
 # Run command to generate icons:
 # 1) flutter pub run flutter_launcher_icons:main

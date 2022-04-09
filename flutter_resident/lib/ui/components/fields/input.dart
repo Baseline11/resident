@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_resident/ui/components/assets/global_assets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import './../theme/theme.dart';
 
@@ -15,8 +17,10 @@ class Input extends StatelessWidget {
   final Color focusedBorderColor;
   final Color errorBorderColor;
   final String? errorText;
-  final Color? errorColor;
+  final Color? errorTextColor;
   final Widget? suffix;
+  final bool? isInputValid;
+  final Key? textFormFieldKey;
 
   final List<TextInputFormatter>? textInputFormatterList;
   final int? errorMaxLines;
@@ -28,6 +32,7 @@ class Input extends StatelessWidget {
   final bool? obscureText;
   final Widget? prefixIcon;
   final String? prefixText;
+  final FocusNode? focusNode;
 
   Input({
     this.helperText,
@@ -40,7 +45,7 @@ class Input extends StatelessWidget {
     this.focusedBorderColor = ThemeColors.colorLightLabelsQuaternary,
     this.errorBorderColor = colorFeedbackDangerDark,
     this.errorText,
-    this.errorColor = colorFeedbackDangerDark,
+    this.errorTextColor = colorFunctionalSoftLightest,
     this.hintColor = ThemeColors.colorLightLabelsTertiary,
     this.suffix,
     this.prefixIcon,
@@ -53,6 +58,9 @@ class Input extends StatelessWidget {
     this.enabled,
     this.obscureText,
     this.prefixText,
+    this.isInputValid,
+    this.focusNode,
+    this.textFormFieldKey,
   });
 
   Widget get defaultInput {
@@ -64,12 +72,12 @@ class Input extends StatelessWidget {
     );
 
     var errorBorder = OutlineInputBorder(
-      borderSide: BorderSide(color: errorBorderColor, width: 2.0),
+      borderSide: BorderSide(color: enabledBorderColor, width: 2.0),
       borderRadius: borderRadius,
     );
 
     var errorTextStyle = TextStyle(
-      color: errorColor,
+      color: errorTextColor,
       fontSize: fontSizeXXXXS,
     );
     var helperTextStyle = TextStyle(
@@ -77,11 +85,18 @@ class Input extends StatelessWidget {
       fontSize: fontSizeXXXXS,
     );
 
+    final InputBorder focusedBorder = OutlineInputBorder(
+      borderSide: BorderSide(color: focusedBorderColor, width: 2.0),
+      borderRadius: borderRadius,
+    );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           child: TextFormField(
+            key: textFormFieldKey,
+            focusNode: focusNode,
             textAlignVertical: TextAlignVertical.bottom,
             obscureText: obscureText ?? false,
             enabled: enabled,
@@ -90,7 +105,9 @@ class Input extends StatelessWidget {
             cursorColor: focusedBorderColor,
             textAlign: textAlign,
             style: TextStyle(
-              color: colorBrandPrimaryDarkest,
+              color: errorText != null
+                  ? ThemeColors.colorLightTintsRed
+                  : colorBrandPrimaryDarkest,
               fontSize: fontSizeXXS,
             ),
             decoration: InputDecoration(
@@ -119,14 +136,14 @@ class Input extends StatelessWidget {
                 borderSide: BorderSide(),
               ),
               enabledBorder: enabledBorder,
-              focusedBorder: OutlineInputBorder(
-                borderSide: BorderSide(color: focusedBorderColor, width: 2.0),
-                borderRadius: borderRadius,
-              ),
+              focusedBorder: focusedBorder,
+              focusedErrorBorder: focusedBorder,
               errorBorder: errorText != null ? errorBorder : enabledBorder,
               errorMaxLines: errorMaxLines,
               errorText: errorText ?? helperText,
               errorStyle: errorText != null ? errorTextStyle : helperTextStyle,
+              suffixIcon: getSuffixIcon(),
+              suffixIconConstraints: BoxConstraints(maxHeight: 24),
             ),
             keyboardType: keyboardType,
             inputFormatters: textInputFormatterList,
@@ -135,6 +152,32 @@ class Input extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Widget? getSuffixIcon() {
+    if (isInputValid == true) {
+      return Padding(
+        padding: EdgeInsets.only(
+          right: 10,
+        ),
+        child: SvgPicture.asset(
+          GlobalAssets.validSvg,
+        ),
+      );
+    }
+
+    if (errorText != null) {
+      return Padding(
+        padding: EdgeInsets.only(
+          right: 10,
+        ),
+        child: SvgPicture.asset(
+          GlobalAssets.errorSvg,
+        ),
+      );
+    }
+
+    return null;
   }
 
   @override

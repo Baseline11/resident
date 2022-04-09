@@ -15,10 +15,10 @@ class GetxSignUpPresenter extends GetxController
   final SaveCurrentAccount saveCurrentAccount;
   final AddAccount addAccount;
 
-  String? _username;
-  String? _firstName;
-  String? _lastName;
-  String? _email;
+  String? username;
+  String? firstName;
+  String? lastName;
+  String? email;
 
   var _usernameError = Rx<UIError?>(null);
   var _firstNameError = Rx<UIError?>(null);
@@ -37,35 +37,35 @@ class GetxSignUpPresenter extends GetxController
   });
 
   void validateUsername(String username) {
-    _username = username;
+    this.username = username;
     _usernameError.value = _validateField('username');
     _validateForm();
   }
 
   void validateFirstName(String firstName) {
-    _firstName = firstName;
+    this.firstName = firstName;
     _firstNameError.value = _validateField('first_name');
     _validateForm();
   }
 
   void validateLastName(String lastName) {
-    _lastName = lastName;
+    this.lastName = lastName;
     _lastNameError.value = _validateField('last_name');
     _validateForm();
   }
 
   void validateEmail(String email) {
-    _email = email;
+    this.email = email;
     _emailError.value = _validateField('email');
     _validateForm();
   }
 
   UIError? _validateField(String field) {
     final formData = {
-      'username': _username,
-      'first_name': _firstName,
-      'last_name': _lastName,
-      'email': _email,
+      'username': username,
+      'first_name': firstName,
+      'last_name': lastName,
+      'email': email,
     };
     final error = validation.validate(field: field, input: formData);
     switch (error) {
@@ -83,10 +83,10 @@ class GetxSignUpPresenter extends GetxController
         _firstNameError.value == null &&
         _lastNameError.value == null &&
         _emailError.value == null &&
-        _username != null &&
-        _firstName != null &&
-        _lastName != null &&
-        _email != null;
+        username != null &&
+        firstName != null &&
+        lastName != null &&
+        email != null;
   }
 
   Future<void> signUp() async {
@@ -95,10 +95,10 @@ class GetxSignUpPresenter extends GetxController
       isLoading = true;
       final account = await addAccount.add(
         AddAccountParams(
-          username: _username!,
-          firstName: _firstName!,
-          lastName: _lastName!,
-          email: _email!,
+          username: username!,
+          firstName: firstName!,
+          lastName: lastName!,
+          email: email!,
         ),
       );
       await saveCurrentAccount.save(account);

@@ -7,6 +7,7 @@ class ThemeColors {
   static const colorLightLabelsTertiary = Color(0xFFBFBFC1);
   static const colorLightBackgroundsPrimary = Color(0xFFFFFFFF);
   static const colorLightBackgroundsSecondary = Color(0xFFF2F2F7);
+  static const colorLightTintsRed = Color(0xFFFF3B30);
 }
 
 // Brand Primary colors

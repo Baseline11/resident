@@ -14,6 +14,11 @@ abstract class SignUpPresenter implements Listenable {
   Stream<bool> get isFormValidStream;
   Stream<bool> get isLoadingStream;
 
+  String? get username;
+  String? get firstName;
+  String? get lastName;
+  String? get email;
+
   void validateUsername(String username);
   void validateFirstName(String firstName);
   void validateLastName(String lastName);
