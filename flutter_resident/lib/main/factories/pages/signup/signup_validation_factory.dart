@@ -12,8 +12,9 @@ Validation makeSignUpValidation() {
 
 List<FieldValidation> makeSignUpValidations() {
   return [
-    ...ValidationBuilder.field('name').required().min(3).build(),
+    ...ValidationBuilder.field('username').required().min(3).build(),
+    ...ValidationBuilder.field('first_name').required().min(3).build(),
+    ...ValidationBuilder.field('last_name').required().min(3).build(),
     ...ValidationBuilder.field('email').required().email().build(),
-    ...ValidationBuilder.field('password').required().min(3).build(),
   ];
 }
