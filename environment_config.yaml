@@ -1,0 +1,50 @@
+environment_config:
+  path: environment_config.dart # optional, result file path against `lib/` folder
+  dotenv_path: .env # optional, result file path for .env file against project root folder
+  class: EnvironmentConfig # optional, class name
+
+
+  fields: # set of fields for command
+    FSDK_PROJECT_ID:
+      default: "NOT_SET"
+      dotenv: true
+
+    FSDK_MESSENGER_ID:
+      default: "NOT_SET"
+      dotenv: true
+
+    FSDK_DATABASE_URL:
+      default: "NOT_SET"
+      dotenv: true
+
+    FSDK_STORAGE_BUCKET:
+      default: "NOT_SET"
+      dotenv: true
+
+    FSDK_ANDROID_APP_ID:
+      default: "NOT_SET"
+      dotenv: true
+
+    FSDK_ANDROID_API_KEY:
+      default: "NOT_SET"
+      dotenv: true
+
+    FSDK_ANDROID_CLIENT_ID:
+      default: "NOT_SET"
+      dotenv: true
+
+    FSDK_IOS_APP_ID:
+      default: "NOT_SET"
+      dotenv: true
+
+    FSDK_IOS_API_KEY:
+      default: "NOT_SET"
+      dotenv: true
+
+    FSDK_IOS_CLIENT_ID:
+      default: "NOT_SET"
+      dotenv: true
+
+    FSDK_IOS_BUNDLE_ID:
+      default: "NOT_SET"
+      dotenv: true
