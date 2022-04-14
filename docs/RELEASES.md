@@ -13,7 +13,7 @@ Example:
 Version in pubspec.yaml: 0.0.1+2
 
 Tag: 
-ios0.0.0+2
+ios0.0.1+2
 ```
 
 ### Android
@@ -26,6 +26,6 @@ Example:
 Version in pubspec.yaml: 0.0.1+2
 
 Tag: 
-android0.0.0+2
+android0.0.1+2
 ```
 
