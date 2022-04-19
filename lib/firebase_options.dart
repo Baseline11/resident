@@ -32,7 +32,6 @@ class DefaultFirebaseOptions {
         appId: env['FSDK_ANDROID_APP_ID'] ?? "",
         messagingSenderId: env['FSDK_MESSENGER_ID'] ?? "",
         projectId: env['FSDK_PROJECT_ID'] ?? "",
-        databaseURL: env['FSDK_DATABASE_URL'] ?? "",
         storageBucket: env['FSDK_STORAGE_BUCKET'] ?? "",
       );
 
@@ -41,9 +40,7 @@ class DefaultFirebaseOptions {
         appId: env['FSDK_IOS_APP_ID'] ?? "",
         messagingSenderId: env['FSDK_MESSENGER_ID'] ?? "",
         projectId: env['FSDK_PROJECT_ID'] ?? "",
-        databaseURL: env['FSDK_DATABASE_URL'] ?? "",
         storageBucket: env['FSDK_STORAGE_BUCKET'] ?? "",
-        androidClientId: env['FSDK_ANDROID_CLIENT_ID'] ?? "",
         iosClientId: env['FSDK_IOS_CLIENT_ID'] ?? "",
         iosBundleId: env['FSDK_IOS_BUNDLE_ID'] ?? "",
       );
