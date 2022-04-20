@@ -44,7 +44,7 @@ Future<void> createEnvFile(String type,
     {required Map<String, dynamic> iOS,
     required Map<String, dynamic> android}) async {
   final fileName = ".env.$type";
-  File file = File("../../../environments/$fileName}");
+  File file = File("../../../environments/$fileName");
   if (await file.exists()) {
     //Remove old file
     await file.delete();
