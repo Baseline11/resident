@@ -5,26 +5,7 @@ import 'dart:io';
 
 import 'package:plist_parser/plist_parser.dart';
 
-enum EnvironmentType {
-  dev,
-  staging,
-}
-
-extension EnvTypeExt on EnvironmentType {
-  String get fileName {
-    switch (this) {
-      case EnvironmentType.dev:
-        return ".env.dev";
-
-      case EnvironmentType.staging:
-        return ".env.staging";
-    }
-  }
-
-  String get name {
-    return this.toString().split(".").last;
-  }
-}
+const String path = "../../../environments";
 
 Map<String, dynamic> iOSOptions(Map<dynamic, dynamic> plist) {
   Map<String, dynamic> map = {};
@@ -53,10 +34,17 @@ Map<String, dynamic> androidOptions(Map<dynamic, dynamic> json) {
   return map;
 }
 
-Future<void> createEnvFile(EnvironmentType type,
+Future<void> createPlaceholderEnv() async {
+  // This is to avoid build failures as one .env must be declared in pubspec for prod builds
+  File file = File("../../../.env");
+  await file.writeAsString("PLACEHOLDER", mode: FileMode.append);
+}
+
+Future<void> createEnvFile(String type,
     {required Map<String, dynamic> iOS,
     required Map<String, dynamic> android}) async {
-  File file = new File("../../../environments/${type.fileName}");
+  final fileName = ".env.$type";
+  File file = File("../../../environments/$fileName}");
   if (await file.exists()) {
     //Remove old file
     await file.delete();
@@ -72,41 +60,62 @@ Future<void> createEnvFile(EnvironmentType type,
     await file.writeAsString("$key=${android[key]}\n", mode: FileMode.append);
   }
 
-  print("${type.fileName} created");
+  print("$fileName created");
   return;
 }
 
-void doEnvironmentMagic(EnvironmentType type) {
+void doEnvironmentMagic(String type) {
   // iOS dev environment
   Map<String, dynamic> iOSOption = {};
   Map<String, dynamic> androidOption = {};
 
   try {
-    var devPlist = PlistParser().parseFileSync(
-        "../../../environments/${type.name}/GoogleService-Info.plist");
+    var devPlist =
+        PlistParser().parseFileSync("$path/$type/GoogleService-Info.plist");
     iOSOption = iOSOptions(devPlist);
   } catch (e) {
-    print("GoogleService-Info.plist not found in ../../../environments/dev");
+    print("GoogleService-Info.plist not found in $path/$type");
     print("Skipping generating dev environment for iOS");
   }
 
   // Android dev environment
   try {
-    final file =
-        File('../../../environments/${type.name}/google-services.json');
+    final file = File('$path/$type/google-services.json');
     final string = file.readAsStringSync();
     final data = jsonDecode(string);
     androidOption = androidOptions(data);
   } catch (e) {
-    print("google-services.json not found in ../../../environments/dev");
+    print(e);
+    print("google-services.json not found in $path/$type");
     print("Skipping generating dec environment for android");
   }
 
   createEnvFile(type, iOS: iOSOption, android: androidOption);
 }
 
-void main() {
-  for (final type in EnvironmentType.values) {
+Future<List<String>> getSubDirectories() async {
+  List<String> subDirectories = [];
+  try {
+    final dir = Directory(path);
+    final List<FileSystemEntity> entities = await dir.list().toList();
+    for (final entity in entities) {
+      if (entity is Directory) {
+        subDirectories.add(entity.path.split("/").last);
+      }
+    }
+  } catch (e) {
+    print(
+        "Make sure a directory exists at $path with sub folders of your environments");
+  }
+
+  return subDirectories;
+}
+
+void main() async {
+  final envFolders = await getSubDirectories();
+
+  for (final type in envFolders) {
     doEnvironmentMagic(type);
   }
+  createPlaceholderEnv();
 }
