@@ -6,6 +6,6 @@ enum FirebaseEnv {
 
 extension FirebaseEnvExt on FirebaseEnv {
   String get fileName {
-    return ".env.${this.toString().split(".").last}";
+    return "environments/.env.${this.toString().split(".").last}";
   }
 }

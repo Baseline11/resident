@@ -7,10 +7,13 @@ import '../firebase_options.dart';
 
 Future<void> initializeFirebase({required FirebaseEnv env}) async {
   WidgetsFlutterBinding.ensureInitialized();
+  final fileName = env.fileName;
   await dotenv.load(fileName: env.fileName);
 
+  final options = DefaultFirebaseOptions.currentPlatform(dotenv.env);
+
   await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform(dotenv.env),
+    options: options,
   );
   return;
 }

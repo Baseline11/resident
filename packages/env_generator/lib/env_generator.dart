@@ -56,7 +56,7 @@ Map<String, dynamic> androidOptions(Map<dynamic, dynamic> json) {
 Future<void> createEnvFile(EnvironmentType type,
     {required Map<String, dynamic> iOS,
     required Map<String, dynamic> android}) async {
-  File file = new File("../../../${type.fileName}");
+  File file = new File("../../../environments/${type.fileName}");
   if (await file.exists()) {
     //Remove old file
     await file.delete();
@@ -65,11 +65,11 @@ Future<void> createEnvFile(EnvironmentType type,
   //Append variables to environment file
 
   for (final key in iOS.keys) {
-    await file.writeAsString("$key:${iOS[key]}\r", mode: FileMode.append);
+    await file.writeAsString("$key=${iOS[key]}\n", mode: FileMode.append);
   }
 
   for (final key in android.keys) {
-    await file.writeAsString("$key:${android[key]}\r", mode: FileMode.append);
+    await file.writeAsString("$key=${android[key]}\n", mode: FileMode.append);
   }
 
   print("${type.fileName} created");
