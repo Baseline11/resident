@@ -8,43 +8,54 @@ environment_config:
     FSDK_PROJECT_ID:
       default: "NOT_SET"
       dotenv: true
+      env_var: FSDK_PROJECT_ID
 
     FSDK_MESSENGER_ID:
       default: "NOT_SET"
       dotenv: true
+      env_var: FSDK_MESSENGER_ID
 
     FSDK_DATABASE_URL:
       default: "NOT_SET"
       dotenv: true
+      env_var: FSDK_DATABASE_URL
 
     FSDK_STORAGE_BUCKET:
       default: "NOT_SET"
       dotenv: true
+      env_var: FSDK_STORAGE_BUCKET
 
     FSDK_ANDROID_APP_ID:
       default: "NOT_SET"
       dotenv: true
+      env_var: FSDK_ANDROID_APP_ID
 
     FSDK_ANDROID_API_KEY:
       default: "NOT_SET"
       dotenv: true
+      env_var: FSDK_ANDROID_API_KEY
 
     FSDK_ANDROID_CLIENT_ID:
       default: "NOT_SET"
       dotenv: true
+      env_var: FSDK_ANDROID_CLIENT_ID
 
     FSDK_IOS_APP_ID:
       default: "NOT_SET"
       dotenv: true
+      env_var: FSDK_IOS_APP_ID
 
     FSDK_IOS_API_KEY:
       default: "NOT_SET"
       dotenv: true
+      env_var: FSDK_IOS_API_KEY
 
     FSDK_IOS_CLIENT_ID:
       default: "NOT_SET"
       dotenv: true
+      env_var: FSDK_IOS_CLIENT_ID
 
     FSDK_IOS_BUNDLE_ID:
       default: "NOT_SET"
       dotenv: true
+      env_var: FSDK_IOS_BUNDLE_ID
