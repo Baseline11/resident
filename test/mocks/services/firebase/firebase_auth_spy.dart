@@ -7,39 +7,37 @@ import './firebase.dart';
 class FirebaseAuthSpy extends Mock implements FirebaseAuth {
   // SignInWithEmailAndPassword method
   When mockSignInWithEmailAndPasswordCall() =>
-      when(() => this.signInWithEmailAndPassword(
+      when(() => signInWithEmailAndPassword(
           email: any(named: 'email'), password: any(named: 'password')));
   void mockSignInWithEmailAndPassword({
     required MockUser mockUser,
   }) =>
-      this.mockSignInWithEmailAndPasswordCall().thenAnswer((_) async =>
+      mockSignInWithEmailAndPasswordCall().thenAnswer((_) async =>
           MockFirebaseAuth(mockUser: mockUser)
               .signInWithEmailAndPassword(email: '', password: ''));
   void mockSignInWithEmailAndPasswordError({required Exception error}) =>
-      this.mockSignInWithEmailAndPasswordCall().thenThrow(error);
+      mockSignInWithEmailAndPasswordCall().thenThrow(error);
   void mockSignInWithEmailAndPassword2({
     required UserCredentialSpy userCredential,
   }) =>
-      this
-          .mockSignInWithEmailAndPasswordCall()
+      mockSignInWithEmailAndPasswordCall()
           .thenAnswer((_) async => userCredential);
 
   // CreateUserWithEmailAndPassword method
   When mockCreateUserWithEmailAndPasswordCall() =>
-      when(() => this.createUserWithEmailAndPassword(
+      when(() => createUserWithEmailAndPassword(
           email: any(named: 'email'), password: any(named: 'password')));
   void mockCreateUserWithEmailAndPassword({
     required MockUser mockUser,
   }) =>
-      this.mockCreateUserWithEmailAndPasswordCall().thenAnswer((_) async =>
+      mockCreateUserWithEmailAndPasswordCall().thenAnswer((_) async =>
           MockFirebaseAuth(mockUser: mockUser)
               .signInWithEmailAndPassword(email: '', password: ''));
   void mockCreateUserWithEmailAndPasswordError({required Exception error}) =>
-      this.mockCreateUserWithEmailAndPasswordCall().thenThrow(error);
+      mockCreateUserWithEmailAndPasswordCall().thenThrow(error);
   void mockCreateUserWithEmailAndPassword2({
     required UserCredentialSpy userCredential,
   }) =>
-      this
-          .mockCreateUserWithEmailAndPasswordCall()
+      mockCreateUserWithEmailAndPasswordCall()
           .thenAnswer((_) async => userCredential);
 }
