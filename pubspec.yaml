@@ -29,12 +29,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
 
   cupertino_icons: ^1.0.2
   riverflow:
-    git:
-      url: https://github.com/Baseline11/riverflow.git
-      ref: master
+  equatable:
+  firebase_auth:
+
 
 dev_dependencies:
   flutter_test:
@@ -46,6 +47,10 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+  test: 
+  faker: 
+  mocktail:
+  firebase_auth_mocks: 
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
