@@ -13,9 +13,16 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+
   firebase_core: ^1.14.1
   environment_config: ^3.0.0
   flutter_dotenv: ^5.0.2
+
+  riverflow:
+    git:
+      url: https://github.com/Baseline11/riverflow.git
+      ref: master
+
 
 dev_dependencies:
   flutter_test:
@@ -32,3 +39,4 @@ flutter:
   assets:
     - .env
     - environments/
+
