@@ -1,11 +1,4 @@
-// Define more environment types here if needed
-enum FirebaseEnv {
-  dev,
-  staging,
-}
-
-extension FirebaseEnvExt on FirebaseEnv {
-  String get fileName {
-    return "environments/.env.${this.toString().split(".").last}";
-  }
+class FirebaseEnv {
+  static String dev = "environments/.env.dev";
+  static String staging = "environments/.env.staging";
 }
