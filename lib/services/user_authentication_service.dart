@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import './../domain/entities/entities.dart';
 
 abstract class UserAuthenticationService {
-  Future<UserEntity> login({required AuthenticationParams params});
+  Future<UserAuthEntity> login({required AuthenticationParams params});
 }
 
 class AuthenticationParams extends Equatable {

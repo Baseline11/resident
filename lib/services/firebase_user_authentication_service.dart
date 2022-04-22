@@ -10,16 +10,22 @@ class FirebaseUserAuthenticationService implements UserAuthenticationService {
   FirebaseUserAuthenticationService({required this.auth});
 
   @override
-  Future<UserEntity> login({required AuthenticationParams params}) async {
+  Future<UserAuthEntity> login({required AuthenticationParams params}) async {
     try {
       final FirebaseAuthenticationParams firebaseParams =
           FirebaseAuthenticationParams.fromDomain(params);
 
-      UserCredential userCredential = await auth.signInWithEmailAndPassword(
-          email: firebaseParams.email, password: firebaseParams.password);
+      final UserCredential userCredential =
+          await auth.signInWithEmailAndPassword(
+        email: firebaseParams.email,
+        password: firebaseParams.password,
+      );
 
       if (userCredential.user != null) {
-        return UserEntity(token: userCredential.user!.uid);
+        return UserAuthEntity(
+          token: userCredential.user!.uid,
+          email: firebaseParams.email,
+        );
       } else {
         throw Exception();
       }

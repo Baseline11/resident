@@ -4,7 +4,7 @@ import 'package:mocktail/mocktail.dart';
 class UserCredentialSpy extends Mock implements UserCredential {
   When mockUser() => when(() => user);
   void mockUserCall({
-    required User? user,
+    User? user,
   }) =>
       mockUser().thenAnswer((_) => user);
 }
