@@ -3,13 +3,9 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverflow/widgets/module_widget.dart';
 
 class RootModule extends StatelessWidget {
-
-  static Future<ProviderContainer> initRootModule(
-      bool shouldInitLocalStorage) async {
-
+  static Future<ProviderContainer> initRootModule() async {
     final container = ProviderContainer();
-    return ProviderContainer();
-
+    return container;
   }
 
   final WidgetBuilder builder;

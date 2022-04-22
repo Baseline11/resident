@@ -31,6 +31,15 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  root:
+    path: modules/root
+
+  login_module:
+    path: modules/login_module
+
+  resident_home_module:
+    path: modules/resident_home_module
+
   riverflow:
     git:
       url: https://github.com/Baseline11/riverflow.git

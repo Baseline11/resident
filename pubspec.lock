@@ -319,6 +319,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  login_module:
+    dependency: "direct main"
+    description:
+      path: "modules/login_module"
+      relative: true
+    source: path
+    version: "0.0.1"
   matcher:
     dependency: transitive
     description:
@@ -382,6 +389,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
+  resident_home_module:
+    dependency: "direct main"
+    description:
+      path: "modules/resident_home_module"
+      relative: true
+    source: path
+    version: "0.0.1"
   riverflow:
     dependency: "direct main"
     description:
@@ -398,6 +412,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  root:
+    dependency: "direct main"
+    description:
+      path: "modules/root"
+      relative: true
+    source: path
+    version: "0.0.1"
   shelf:
     dependency: transitive
     description:
