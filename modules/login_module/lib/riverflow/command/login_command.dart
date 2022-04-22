@@ -1,7 +1,8 @@
 import 'package:riverflow/utils/command.dart';
 import 'package:riverpod/src/framework.dart';
-import 'package:root/feature/user/signal/user_signal.dart';
-import 'package:root/feature/user/store/user_store.dart';
+import 'package:root/riverflow/user/store/user_store.dart';
+
+import '../signal/login_signal.dart';
 
 class LoginCommand extends Command1<LoginUserPayload> {
   LoginCommand(ProviderContainer container) : super(container);
@@ -12,3 +13,5 @@ class LoginCommand extends Command1<LoginUserPayload> {
     readStore(userStoreProvider).login(isLoggedIn: true);
   }
 }
+
+// LoginModule separate ... will have the command and signal
