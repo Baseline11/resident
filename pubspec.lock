@@ -257,7 +257,7 @@ packages:
     source: hosted
     version: "2.1.0"
   hooks_riverpod:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: hooks_riverpod
       url: "https://pub.dartlang.org"

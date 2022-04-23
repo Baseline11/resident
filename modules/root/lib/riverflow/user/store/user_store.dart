@@ -13,5 +13,8 @@ class UserStore extends BaseStore {
   void login({required bool isLoggedIn}) {
     writeObservable(
         userObservableProvider, UserObservable(isLoggedIn: isLoggedIn));
+
+    print(userObservable.isLoggedIn);
+    print(userObservable.isLoggedIn);
   }
 }

@@ -44,6 +44,7 @@ dependencies:
     git:
       url: https://github.com/Baseline11/riverflow.git
       ref: main
+  hooks_riverpod: ^1.0.3
 
 dev_dependencies:
   flutter_test:
