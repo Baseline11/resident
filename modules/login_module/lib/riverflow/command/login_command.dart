@@ -17,7 +17,7 @@ class LoginCommand extends Command1<LoginUserPayload> {
   @override
   void execute(LoginUserPayload payload) {
     //Todo: Add call to auth service here and update login state
-    readStore(userStoreProvider).login(isLoggedIn: true);
+    readStore(userStoreProvider).updateUserState(isLoggedIn: true);
   }
 }
 
