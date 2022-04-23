@@ -33,7 +33,6 @@ dependencies:
 
   cupertino_icons: ^1.0.2
   riverflow:
-  equatable:
   firebase_auth:
 
 
@@ -51,6 +50,9 @@ dev_dependencies:
   faker: 
   mocktail:
   firebase_auth_mocks: 
+  freezed:
+  freezed_annotation:
+  build_runner:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
