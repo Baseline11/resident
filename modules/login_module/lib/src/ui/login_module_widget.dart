@@ -4,6 +4,7 @@ import 'package:login_module/riverflow/config/config.dart';
 import 'package:riverflow/widgets/module_widget.dart';
 import 'package:root/riverflow/user/observable/user_observable.dart';
 
+import '../../riverflow/payload/login_payload.dart';
 import '../../riverflow/signal/login_signal.dart';
 
 class LoginModule extends StatelessWidget {

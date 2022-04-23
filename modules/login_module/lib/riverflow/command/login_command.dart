@@ -3,6 +3,7 @@ import 'package:riverflow/utils/signal_command_map.dart';
 import 'package:riverpod/src/framework.dart';
 import 'package:root/riverflow/user/store/user_store.dart';
 
+import '../payload/login_payload.dart';
 import '../signal/login_signal.dart';
 
 void mapLoginCommand(SignalCommandMap signalCommandMap) {
