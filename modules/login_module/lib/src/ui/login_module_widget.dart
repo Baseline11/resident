@@ -8,33 +8,39 @@ import '../../riverflow/payload/login_payload.dart';
 import '../../riverflow/signal/login_signal.dart';
 
 class LoginModule extends StatelessWidget {
-  const LoginModule();
+  const LoginModule({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return ModuleWidget(
-        configure: () =>
-            configureLoginModule(ProviderScope.containerOf(context)),
-        builder: (_) => Scaffold(
-              body: SafeArea(
-                child: Column(
-                  children: [
-                    Consumer(
-                        builder: (context, ref, _) => Text(
-                            'Login module ${ref.watch(userObservableProvider).isLoggedIn}')),
-                    Consumer(
-                      builder: (context, ref, _) => MaterialButton(
-                        onPressed: () {
-                          ref.watch(loginUserSignalProvider).dispatch(
-                              LoginUserPayload(
-                                  email: "email", password: "password"));
-                        },
-                        child: const Text('Login'),
+    return Navigator(
+      pages: [
+        MaterialPage(
+          child: ModuleWidget(
+              configure: () =>
+                  configureLoginModule(ProviderScope.containerOf(context)),
+              builder: (_) => Scaffold(
+                    body: SafeArea(
+                      child: Column(
+                        children: [
+                          Consumer(
+                              builder: (context, ref, _) => Text(
+                                  'Login module ${ref.watch(userObservableProvider).isLoggedIn}')),
+                          Consumer(
+                            builder: (context, ref, _) => MaterialButton(
+                              onPressed: () {
+                                ref.watch(loginUserSignalProvider).dispatch(
+                                    LoginUserPayload(
+                                        email: "email", password: "password"));
+                              },
+                              child: const Text('Login'),
+                            ),
+                          )
+                        ],
                       ),
-                    )
-                  ],
-                ),
-              ),
-            ));
+                    ),
+                  )),
+        ),
+      ],
+    );
   }
 }
