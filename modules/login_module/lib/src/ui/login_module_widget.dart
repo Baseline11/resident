@@ -41,6 +41,9 @@ class LoginModule extends StatelessWidget {
                   )),
         ),
       ],
+      onPopPage: (route, result) {
+        return route.didPop(result);
+      },
     );
   }
 }
