@@ -10,7 +10,7 @@ class UserStore extends BaseStore {
 
   UserObservable get userObservable => readObservable(userObservableProvider);
 
-  void updateUserState({required bool isLoggedIn}) {
+  void updateUserLoginState({required bool isLoggedIn}) {
     writeObservable(
         userObservableProvider, UserObservable(isLoggedIn: isLoggedIn));
   }
