@@ -1,9 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverflow/widgets/module_widget.dart';
 import 'package:root/riverflow/user/observable/user_observable.dart';
 
-class RootModule extends StatelessWidget {
+class RootModule extends StatefulWidget {
   static Future<ProviderContainer> initRootModule() async {
     final container = ProviderContainer();
     return container;
@@ -21,12 +22,20 @@ class RootModule extends StatelessWidget {
       : super(key: key);
 
   @override
+  State<RootModule> createState() => _RootModuleState();
+}
+
+class _RootModuleState extends State<RootModule> {
+  @override
   Widget build(BuildContext context) {
     return ModuleWidget(
-      configure: () => providerContainer,
+      configure: () => widget.providerContainer,
       builder: (_) => Consumer(builder: (_, ref, __) {
         final isLoggedIn = ref.watch(userObservableProvider).isLoggedIn;
-        return isLoggedIn ? loggedInNavigator : loggedOutNavigator;
+        return MaterialApp(
+          home:
+              isLoggedIn ? widget.loggedInNavigator : widget.loggedOutNavigator,
+        );
       }),
     );
   }

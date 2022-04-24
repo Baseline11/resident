@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:login_module/login_module.dart';
 
-MaterialApp loggedOutNavigator() {
-  return MaterialApp(
-      home: Navigator(
+Navigator loggedOutNavigator() {
+  return Navigator(
     pages: const [
       MaterialPage(
         child: LoginModule(),
@@ -12,5 +11,5 @@ MaterialApp loggedOutNavigator() {
     onPopPage: (route, result) {
       return route.didPop(result);
     },
-  ));
+  );
 }
