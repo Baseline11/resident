@@ -27,6 +27,8 @@ dependencies:
       ref: main
 
   flutter_svg: ^1.0.1
+  hive_flutter: ^1.1.0
+
 
 dev_dependencies:
   flutter_test:
