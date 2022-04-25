@@ -61,7 +61,7 @@ void main() {
     });
   });
 
-  group('verifityPhoneNumber method', () {
+  group('verifyPhoneNumber method', () {
     late FirebaseUserAuthenticationService sut;
     late MockFirebaseAuth auth;
     late MockUser mockUser;
