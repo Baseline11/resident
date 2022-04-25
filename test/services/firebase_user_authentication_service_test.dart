@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:resident_flutter/services/auth_state.dart';
 import 'package:test/test.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
@@ -31,7 +32,7 @@ void main() {
       // Mocking a successful return
       auth.mockSignInWithEmailAndPassword(mockUser: mockUser);
 
-      final UserAuthEntity result = await sut.login(params: params);
+      final UserAuthEntity result = await sut.emailLogin(params: params);
 
       expect(result.token, mockUser.uid);
       expect(result.email, mockUser.email);
@@ -42,7 +43,7 @@ void main() {
       // Mocking a null user return
       auth.mockSignInWithEmailAndPassword2(userCredential: userCredential);
 
-      final future = sut.login(params: params);
+      final future = sut.emailLogin(params: params);
 
       expect(future, throwsException);
     });
@@ -55,7 +56,7 @@ void main() {
         error: FirebaseAuthException(code: 'user-not-found'),
       );
 
-      final future = sut.login(params: params);
+      final future = sut.emailLogin(params: params);
 
       expect(future, throwsException);
     });
@@ -79,14 +80,16 @@ void main() {
     test(
         'Should return a valid UserAuthEntity if authentication with phoneNumber proceeds',
         () async {
-      Future<String> getCode() async {
-        return 'any_code';
-      }
-
-      final UserAuthEntity result = await sut.verifyPhoneNumber(
+      sut.verifyPhoneNumber(
         phoneNumber: phoneNumber,
-        getCodeFunction: getCode,
-        codeHasBeenSentFunction: () async {},
+      );
+
+      await Future.delayed(const Duration(seconds: 1));
+
+      expect(sut.state.name, AuthStateNameEnum.codeSent);
+
+      final UserAuthEntity result = await sut.verifyCode(
+        code: 'any_code',
       );
 
       expect(result.token, mockUser.uid);

@@ -3,15 +3,12 @@ import 'package:equatable/equatable.dart';
 import './../domain/entities/entities.dart';
 
 abstract class UserAuthenticationService {
-  Future<UserAuthEntity> login({required AuthenticationParams params});
+  Future<UserAuthEntity> emailLogin({required AuthenticationParams params});
   Future<UserAuthEntity> verifyPhoneNumber({
     required String phoneNumber,
-    // once this is called, the SMS code has ben sent
-    required Future<void> Function() codeHasBeenSentFunction,
-    // should return the SMS code provided by the user that should match with
-    // the SMS code that has been sent earlier
-    required Future<String> Function() getCodeFunction,
+    bool forceResend,
   });
+  Future<UserAuthEntity> verifyCode({required String code});
 }
 
 class AuthenticationParams extends Equatable {

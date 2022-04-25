@@ -6,13 +6,18 @@ import './../domain/entities/entities.dart';
 
 import './user_authentication_service.dart';
 
+import './auth_state.dart';
+
 class FirebaseUserAuthenticationService implements UserAuthenticationService {
+  final AuthState state = AuthState();
   final FirebaseAuth auth;
 
-  FirebaseUserAuthenticationService({required this.auth});
+  FirebaseUserAuthenticationService({
+    required this.auth,
+  });
 
   @override
-  Future<UserAuthEntity> login({
+  Future<UserAuthEntity> emailLogin({
     required AuthenticationParams params,
   }) async {
     try {
@@ -42,14 +47,14 @@ class FirebaseUserAuthenticationService implements UserAuthenticationService {
   @override
   Future<UserAuthEntity> verifyPhoneNumber({
     required String phoneNumber,
-    required Future<String> Function() getCodeFunction,
-    required Future<void> Function() codeHasBeenSentFunction,
+    bool forceResend = false,
   }) async {
     try {
       UserCredential? userCredential;
       final authenticationHasEnded = Completer<bool>();
 
       await auth.verifyPhoneNumber(
+        forceResendingToken: forceResend == true ? state.resendToken : null,
         phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
           // ANDROID ONLY!
@@ -62,21 +67,13 @@ class FirebaseUserAuthenticationService implements UserAuthenticationService {
           throw e;
         },
         codeSent: (String verificationId, int? resendToken) async {
-          // Update the UI - wait for the user to enter the SMS code
+          state.verificationId = verificationId;
+          if (resendToken != null) {
+            state.resendToken = resendToken;
+          }
 
-          await codeHasBeenSentFunction(); // once this is called, the SMS code has ben sent
-          final String smsCode =
-              await getCodeFunction(); // waiting for the user to provide the SMS
-
-          // Create a PhoneAuthCredential with the code
-          PhoneAuthCredential credential = PhoneAuthProvider.credential(
-            verificationId: verificationId,
-            smsCode: smsCode,
-          );
-
-          // Sign the user in (or link) with the credential
-          userCredential = await auth.signInWithCredential(credential);
-          authenticationHasEnded.complete(true);
+          // update the state
+          state.name = AuthStateNameEnum.codeSent;
         },
         codeAutoRetrievalTimeout: (String verificationId) {
           throw Exception();
@@ -86,10 +83,50 @@ class FirebaseUserAuthenticationService implements UserAuthenticationService {
       await authenticationHasEnded.future;
 
       if (userCredential?.user != null) {
+        // update the state
+        state.name = AuthStateNameEnum.completed;
+
         return UserAuthEntity(
           token: userCredential!.user!.uid,
           email: userCredential!.user!.email,
           phoneNumber: userCredential!.user!.phoneNumber,
+        );
+      } else {
+        throw Exception();
+      }
+    } catch (e) {
+      // TODO: map the type of exception I should throw
+      rethrow;
+    }
+  }
+
+  @override
+  Future<UserAuthEntity> verifyCode({
+    required String code,
+  }) async {
+    try {
+      if (state.verificationId == null) {
+        throw Exception();
+      }
+
+      // Create a PhoneAuthCredential with the code
+      final PhoneAuthCredential credential = PhoneAuthProvider.credential(
+        verificationId: state.verificationId!,
+        smsCode: code,
+      );
+
+      // Sign the user in (or link) with the credential
+      final UserCredential userCredential =
+          await auth.signInWithCredential(credential);
+
+      if (userCredential.user != null) {
+        // update the state
+        state.name = AuthStateNameEnum.completed;
+
+        return UserAuthEntity(
+          token: userCredential.user!.uid,
+          email: userCredential.user!.email,
+          phoneNumber: userCredential.user!.phoneNumber,
         );
       } else {
         throw Exception();
