@@ -8,7 +8,8 @@ abstract class UserAuthenticationService {
     required String phoneNumber,
     // once this is called, the SMS code has ben sent
     required Future<void> Function() codeHasBeenSentFunction,
-    // waiting for the user to provide the SMS
+    // should return the SMS code provided by the user that should match with
+    // the SMS code that has been sent earlier
     required Future<String> Function() getCodeFunction,
   });
 }
