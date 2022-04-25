@@ -21,7 +21,7 @@ dependencies:
   riverflow:
     git:
       url: https://github.com/Baseline11/riverflow.git
-      ref: master
+      ref: main
 
 
 dev_dependencies:
