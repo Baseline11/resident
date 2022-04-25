@@ -20,5 +20,3 @@ class LoginCommand extends Command1<LoginUserPayload> {
     readStore(userStoreProvider).updateUserLoginState(isLoggedIn: true);
   }
 }
-
-// LoginModule separate ... will have the command and signal
