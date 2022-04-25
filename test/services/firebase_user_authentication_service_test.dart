@@ -90,6 +90,8 @@ void main() {
       );
 
       expect(result.token, mockUser.uid);
+      expect(result.phoneNumber, mockUser.phoneNumber);
+      expect(result.email, mockUser.email);
     });
   });
 }
