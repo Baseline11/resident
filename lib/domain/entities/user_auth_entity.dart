@@ -6,6 +6,7 @@ part 'user_auth_entity.freezed.dart';
 class UserAuthEntity with _$UserAuthEntity {
   const factory UserAuthEntity({
     required String token,
-    required String email,
+    String? email,
+    String? phoneNumber,
   }) = _UserAuthEntity;
 }

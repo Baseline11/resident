@@ -17,10 +17,12 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$UserAuthEntityTearOff {
   const _$UserAuthEntityTearOff();
 
-  _UserAuthEntity call({required String token, required String email}) {
+  _UserAuthEntity call(
+      {required String token, String? email, String? phoneNumber}) {
     return _UserAuthEntity(
       token: token,
       email: email,
+      phoneNumber: phoneNumber,
     );
   }
 }
@@ -31,7 +33,8 @@ const $UserAuthEntity = _$UserAuthEntityTearOff();
 /// @nodoc
 mixin _$UserAuthEntity {
   String get token => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
+  String? get email => throw _privateConstructorUsedError;
+  String? get phoneNumber => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UserAuthEntityCopyWith<UserAuthEntity> get copyWith =>
@@ -43,7 +46,7 @@ abstract class $UserAuthEntityCopyWith<$Res> {
   factory $UserAuthEntityCopyWith(
           UserAuthEntity value, $Res Function(UserAuthEntity) then) =
       _$UserAuthEntityCopyWithImpl<$Res>;
-  $Res call({String token, String email});
+  $Res call({String token, String? email, String? phoneNumber});
 }
 
 /// @nodoc
@@ -59,6 +62,7 @@ class _$UserAuthEntityCopyWithImpl<$Res>
   $Res call({
     Object? token = freezed,
     Object? email = freezed,
+    Object? phoneNumber = freezed,
   }) {
     return _then(_value.copyWith(
       token: token == freezed
@@ -68,7 +72,11 @@ class _$UserAuthEntityCopyWithImpl<$Res>
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      phoneNumber: phoneNumber == freezed
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -80,7 +88,7 @@ abstract class _$UserAuthEntityCopyWith<$Res>
           _UserAuthEntity value, $Res Function(_UserAuthEntity) then) =
       __$UserAuthEntityCopyWithImpl<$Res>;
   @override
-  $Res call({String token, String email});
+  $Res call({String token, String? email, String? phoneNumber});
 }
 
 /// @nodoc
@@ -98,6 +106,7 @@ class __$UserAuthEntityCopyWithImpl<$Res>
   $Res call({
     Object? token = freezed,
     Object? email = freezed,
+    Object? phoneNumber = freezed,
   }) {
     return _then(_UserAuthEntity(
       token: token == freezed
@@ -107,7 +116,11 @@ class __$UserAuthEntityCopyWithImpl<$Res>
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
+      phoneNumber: phoneNumber == freezed
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -115,16 +128,18 @@ class __$UserAuthEntityCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_UserAuthEntity implements _UserAuthEntity {
-  const _$_UserAuthEntity({required this.token, required this.email});
+  const _$_UserAuthEntity({required this.token, this.email, this.phoneNumber});
 
   @override
   final String token;
   @override
-  final String email;
+  final String? email;
+  @override
+  final String? phoneNumber;
 
   @override
   String toString() {
-    return 'UserAuthEntity(token: $token, email: $email)';
+    return 'UserAuthEntity(token: $token, email: $email, phoneNumber: $phoneNumber)';
   }
 
   @override
@@ -133,14 +148,17 @@ class _$_UserAuthEntity implements _UserAuthEntity {
         (other.runtimeType == runtimeType &&
             other is _UserAuthEntity &&
             const DeepCollectionEquality().equals(other.token, token) &&
-            const DeepCollectionEquality().equals(other.email, email));
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality()
+                .equals(other.phoneNumber, phoneNumber));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(token),
-      const DeepCollectionEquality().hash(email));
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(phoneNumber));
 
   @JsonKey(ignore: true)
   @override
@@ -150,12 +168,16 @@ class _$_UserAuthEntity implements _UserAuthEntity {
 
 abstract class _UserAuthEntity implements UserAuthEntity {
   const factory _UserAuthEntity(
-      {required String token, required String email}) = _$_UserAuthEntity;
+      {required String token,
+      String? email,
+      String? phoneNumber}) = _$_UserAuthEntity;
 
   @override
   String get token;
   @override
-  String get email;
+  String? get email;
+  @override
+  String? get phoneNumber;
   @override
   @JsonKey(ignore: true)
   _$UserAuthEntityCopyWith<_UserAuthEntity> get copyWith =>
