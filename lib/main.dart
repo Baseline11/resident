@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:resident_flutter/enums/firebase_env_enum.dart';
+import 'package:resident_flutter/helpers/firebase_initializer.dart';
 
-void main() {
+void main() async {
+  await initializeFirebase(env: FirebaseEnv.dev);
   runApp(const MyApp());
 }
 
