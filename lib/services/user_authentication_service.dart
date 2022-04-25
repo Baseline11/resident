@@ -4,7 +4,7 @@ import './../domain/entities/entities.dart';
 
 abstract class UserAuthenticationService {
   Future<UserAuthEntity> login({required AuthenticationParams params});
-  Future<UserAuthEntity> verifityPhoneNumber({
+  Future<UserAuthEntity> verifyPhoneNumber({
     required String phoneNumber,
     // once this is called, the SMS code has ben sent
     required Future<void> Function() codeHasBeenSentFunction,

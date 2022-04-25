@@ -83,7 +83,7 @@ void main() {
         return 'any_code';
       }
 
-      final UserAuthEntity result = await sut.verifityPhoneNumber(
+      final UserAuthEntity result = await sut.verifyPhoneNumber(
         phoneNumber: phoneNumber,
         getCodeFunction: getCode,
         codeHasBeenSentFunction: () async {},

@@ -40,7 +40,7 @@ class FirebaseUserAuthenticationService implements UserAuthenticationService {
   }
 
   @override
-  Future<UserAuthEntity> verifityPhoneNumber({
+  Future<UserAuthEntity> verifyPhoneNumber({
     required String phoneNumber,
     required Future<String> Function() getCodeFunction,
     required Future<void> Function() codeHasBeenSentFunction,
