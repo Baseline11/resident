@@ -16,6 +16,9 @@ dependencies:
   login_module:
     path: ../login_module
 
+  onboarding_module:
+    path: ../onboarding_module
+
   resident_home_module:
     path: ../resident_home_module
 

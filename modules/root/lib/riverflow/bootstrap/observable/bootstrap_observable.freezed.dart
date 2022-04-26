@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$BootstrapObservable {
   bool get bootstrapComplete => throw _privateConstructorUsedError;
+  bool get onBoardingComplete => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BootstrapObservableCopyWith<BootstrapObservable> get copyWith =>
@@ -28,7 +29,7 @@ abstract class $BootstrapObservableCopyWith<$Res> {
   factory $BootstrapObservableCopyWith(
           BootstrapObservable value, $Res Function(BootstrapObservable) then) =
       _$BootstrapObservableCopyWithImpl<$Res>;
-  $Res call({bool bootstrapComplete});
+  $Res call({bool bootstrapComplete, bool onBoardingComplete});
 }
 
 /// @nodoc
@@ -43,11 +44,16 @@ class _$BootstrapObservableCopyWithImpl<$Res>
   @override
   $Res call({
     Object? bootstrapComplete = freezed,
+    Object? onBoardingComplete = freezed,
   }) {
     return _then(_value.copyWith(
       bootstrapComplete: bootstrapComplete == freezed
           ? _value.bootstrapComplete
           : bootstrapComplete // ignore: cast_nullable_to_non_nullable
+              as bool,
+      onBoardingComplete: onBoardingComplete == freezed
+          ? _value.onBoardingComplete
+          : onBoardingComplete // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -60,7 +66,7 @@ abstract class _$BootstrapObservableCopyWith<$Res>
           $Res Function(_BootstrapObservable) then) =
       __$BootstrapObservableCopyWithImpl<$Res>;
   @override
-  $Res call({bool bootstrapComplete});
+  $Res call({bool bootstrapComplete, bool onBoardingComplete});
 }
 
 /// @nodoc
@@ -77,11 +83,16 @@ class __$BootstrapObservableCopyWithImpl<$Res>
   @override
   $Res call({
     Object? bootstrapComplete = freezed,
+    Object? onBoardingComplete = freezed,
   }) {
     return _then(_BootstrapObservable(
       bootstrapComplete: bootstrapComplete == freezed
           ? _value.bootstrapComplete
           : bootstrapComplete // ignore: cast_nullable_to_non_nullable
+              as bool,
+      onBoardingComplete: onBoardingComplete == freezed
+          ? _value.onBoardingComplete
+          : onBoardingComplete // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -90,15 +101,19 @@ class __$BootstrapObservableCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_BootstrapObservable implements _BootstrapObservable {
-  _$_BootstrapObservable({this.bootstrapComplete = false});
+  _$_BootstrapObservable(
+      {this.bootstrapComplete = false, this.onBoardingComplete = false});
 
   @override
   @JsonKey()
   final bool bootstrapComplete;
+  @override
+  @JsonKey()
+  final bool onBoardingComplete;
 
   @override
   String toString() {
-    return 'BootstrapObservable(bootstrapComplete: $bootstrapComplete)';
+    return 'BootstrapObservable(bootstrapComplete: $bootstrapComplete, onBoardingComplete: $onBoardingComplete)';
   }
 
   @override
@@ -107,12 +122,16 @@ class _$_BootstrapObservable implements _BootstrapObservable {
         (other.runtimeType == runtimeType &&
             other is _BootstrapObservable &&
             const DeepCollectionEquality()
-                .equals(other.bootstrapComplete, bootstrapComplete));
+                .equals(other.bootstrapComplete, bootstrapComplete) &&
+            const DeepCollectionEquality()
+                .equals(other.onBoardingComplete, onBoardingComplete));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(bootstrapComplete));
+      runtimeType,
+      const DeepCollectionEquality().hash(bootstrapComplete),
+      const DeepCollectionEquality().hash(onBoardingComplete));
 
   @JsonKey(ignore: true)
   @override
@@ -122,11 +141,14 @@ class _$_BootstrapObservable implements _BootstrapObservable {
 }
 
 abstract class _BootstrapObservable implements BootstrapObservable {
-  factory _BootstrapObservable({final bool bootstrapComplete}) =
-      _$_BootstrapObservable;
+  factory _BootstrapObservable(
+      {final bool bootstrapComplete,
+      final bool onBoardingComplete}) = _$_BootstrapObservable;
 
   @override
   bool get bootstrapComplete => throw _privateConstructorUsedError;
+  @override
+  bool get onBoardingComplete => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$BootstrapObservableCopyWith<_BootstrapObservable> get copyWith =>

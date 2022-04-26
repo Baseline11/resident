@@ -8,6 +8,7 @@ final bootstrapObservableProvider =
 
 @freezed
 class BootstrapObservable with _$BootstrapObservable {
-  factory BootstrapObservable({@Default(false) bool bootstrapComplete}) =
-      _BootstrapObservable;
+  factory BootstrapObservable(
+      {@Default(false) bool bootstrapComplete,
+      @Default(false) bool onBoardingComplete}) = _BootstrapObservable;
 }

@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverflow/utils/signal_command_map.dart';
 import 'package:riverflow/widgets/module_widget.dart';
+import 'package:root/navigators/logged_in_navigator.dart';
+import 'package:root/navigators/logged_out_navigator.dart';
 import 'package:root/riverflow/bootstrap/command/bootstrap_command.dart';
 import 'package:root/riverflow/bootstrap/observable/bootstrap_observable.dart';
 import 'package:root/riverflow/user/observable/user_observable.dart';
@@ -18,15 +20,9 @@ class RootModule extends StatelessWidget {
     return container;
   }
 
-  final Widget loggedInNavigator;
-  final Widget loggedOutNavigator;
   final ProviderContainer providerContainer;
 
-  const RootModule(
-      {Key? key,
-      required this.loggedInNavigator,
-      required this.loggedOutNavigator,
-      required this.providerContainer})
+  const RootModule({Key? key, required this.providerContainer})
       : super(key: key);
 
   @override
@@ -40,7 +36,7 @@ class RootModule extends StatelessWidget {
 
         return MaterialApp(
           home: bootstrapComplete
-              ? (isLoggedIn ? loggedInNavigator : loggedOutNavigator)
+              ? (isLoggedIn ? loggedInNavigator() : loggedOutNavigator(ref))
               : const SplashPage(),
         );
       }),
