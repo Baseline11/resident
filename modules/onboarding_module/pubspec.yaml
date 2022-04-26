@@ -13,8 +13,13 @@ dependencies:
 
   freezed_annotation: ^2.0.1
   hooks_riverpod: ^1.0.3
+
+  shared_widgets:
+    path: ../shared_widgets
+
   root:
     path: ../root
+
   riverflow:
     git:
       url: https://github.com/Baseline11/riverflow.git

@@ -580,6 +580,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  shared_widgets:
+    dependency: transitive
+    description:
+      path: "modules/shared_widgets"
+      relative: true
+    source: path
+    version: "0.0.1"
   shelf:
     dependency: transitive
     description:

@@ -7,7 +7,9 @@ import '../../../riverflow/signal/onboarding_signal.dart';
 import '../../onboarding_items.dart';
 
 class CarouselWidget extends HookWidget {
-  const CarouselWidget({Key? key}) : super(key: key);
+  final CarouselController controller;
+
+  const CarouselWidget({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +17,7 @@ class CarouselWidget extends HookWidget {
     return Consumer(
       builder: (_, ref, __) {
         return CarouselSlider.builder(
+          carouselController: controller,
           itemCount: onboardingItems.length,
           itemBuilder:
               (BuildContext context, int itemIndex, int pageViewIndex) {
