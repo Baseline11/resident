@@ -37,6 +37,9 @@ dependencies:
   login_module:
     path: modules/login_module
 
+  onboarding_module:
+    path: modules/onboarding_module
+
   resident_home_module:
     path: modules/resident_home_module
 

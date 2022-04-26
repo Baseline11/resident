@@ -19,6 +19,8 @@ dependencies:
     git:
       url: https://github.com/Baseline11/riverflow.git
       ref: main
+  carousel_slider: ^4.1.1
+  flutter_hooks: ^0.18.3
 
 dev_dependencies:
   flutter_test:
