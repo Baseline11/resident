@@ -1,9 +1,13 @@
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:riverpod/src/framework.dart';
 import 'package:root/riverflow/services/local_storage/local_storage_service.dart';
 
-class HiveLocalStorageService implements LocalStorageService {
+class HiveLocalStorageService extends LocalStorageService {
   final boxName = "resident_box";
   late Box? box;
+
+  HiveLocalStorageService(ProviderContainer providerContainer)
+      : super(providerContainer);
 
   @override
   Future<void> init() async {

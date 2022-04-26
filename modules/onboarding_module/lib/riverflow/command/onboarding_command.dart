@@ -2,6 +2,8 @@ import 'package:onboarding_module/riverflow/signal/onboarding_signal.dart';
 import 'package:riverflow/utils/command.dart';
 import 'package:riverflow/utils/signal_command_map.dart';
 import 'package:riverpod/src/framework.dart';
+import 'package:root/riverflow/services/local_storage/local_storage_service.dart';
+import 'package:root/riverflow/services/services.dart';
 
 import '../store/onboarding_store.dart';
 
@@ -29,5 +31,7 @@ class CompleteOnboardingCommand extends Command0 {
   @override
   void execute() {
     //Writes to local storage service
+    readService(localStorageServiceProvider)
+        .write(key: LocalStorageKeys.onBoardingCompleted, value: true);
   }
 }
