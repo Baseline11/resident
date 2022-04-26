@@ -20,9 +20,9 @@ class CarouselWidget extends HookWidget {
         );
       },
       options: CarouselOptions(
-          height: MediaQuery.of(context).size.height / 2.5,
+          height: MediaQuery.of(context).size.height / 2,
           initialPage: 0,
-          viewportFraction: 0.5,
+          viewportFraction: 0.60,
           enableInfiniteScroll: false,
           autoPlay: false,
           enlargeCenterPage: true,
