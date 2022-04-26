@@ -13,6 +13,15 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  root:
+    path: modules/root
+
+  login_module:
+    path: modules/login_module
+
+  resident_home_module:
+    path: modules/resident_home_module
+
 
   firebase_core: ^1.14.1
   environment_config: ^3.0.0
@@ -22,6 +31,8 @@ dependencies:
     git:
       url: https://github.com/Baseline11/riverflow.git
       ref: main
+  hooks_riverpod: ^1.0.3
+
 
 
 dev_dependencies:
@@ -29,6 +40,8 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^1.0.0
+  build_runner: ^2.1.10
+  freezed: ^2.0.2
 
 
 # The following section is specific to Flutter.

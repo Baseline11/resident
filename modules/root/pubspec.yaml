@@ -1,0 +1,37 @@
+name: root
+description: A new Flutter package project.
+version: 0.0.1
+publish_to: none
+homepage:
+
+environment:
+  sdk: ">=2.16.2 <3.0.0"
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  login_module:
+    path: ../login_module
+
+  resident_home_module:
+    path: ../resident_home_module
+
+  freezed_annotation: ^2.0.1
+  hooks_riverpod: ^1.0.3
+  riverflow:
+    git:
+      url: https://github.com/Baseline11/riverflow.git
+      ref: main
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^1.0.0
+  build_runner: ^2.1.10
+  freezed: ^2.0.2
+
+
+flutter:
+
