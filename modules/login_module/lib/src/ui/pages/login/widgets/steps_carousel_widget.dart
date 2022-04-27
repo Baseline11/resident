@@ -47,9 +47,9 @@ class StepsCarouselWidget extends HookConsumerWidget {
         );
       },
       options: CarouselOptions(
-        height: MediaQuery.of(context).size.height / 3.2,
-        initialPage: 0,
-        viewportFraction: 0.60,
+        height: MediaQuery.of(context).size.height / 2.4,
+        initialPage: currentIndex.value,
+        viewportFraction: 0.65,
         scrollPhysics: const NeverScrollableScrollPhysics(),
         enableInfiniteScroll: false,
         autoPlay: false,

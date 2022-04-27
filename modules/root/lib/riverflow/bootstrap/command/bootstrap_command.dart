@@ -26,7 +26,7 @@ class BootstrapCommand extends Command0 {
 
     Future.delayed(const Duration(seconds: 2), () {
       readStore(bootstrapStoreProvider).updateBootstrapState(
-          bootstrapComplete: true, onBoardingComplete: isOnboardingComplete);
+          bootstrapComplete: true, onBoardingComplete: false);
     });
   }
 }

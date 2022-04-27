@@ -13,7 +13,8 @@ Navigator loggedOutNavigator(WidgetRef ref) {
         const MaterialPage(
           child: OnboardingModule(),
         ),
-      const MaterialPage(child: LoginModule()),
+      if (bootStrap.onBoardingComplete)
+        const MaterialPage(child: LoginModule()),
     ],
     onPopPage: (route, result) {
       return route.didPop(result);

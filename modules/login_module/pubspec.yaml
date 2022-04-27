@@ -15,12 +15,18 @@ dependencies:
   hooks_riverpod: ^1.0.3
   carousel_slider: ^4.1.1
   flutter_hooks: ^0.18.3
+  keyboard_service: ^2.0.1
+
+  shared_widgets:
+    path: ../shared_widgets
+
   root:
     path: ../root
   riverflow:
     git:
       url: https://github.com/Baseline11/riverflow.git
       ref: main
+  pinput: ^2.2.0
 
 dev_dependencies:
   flutter_test:

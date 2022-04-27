@@ -25,6 +25,6 @@ List<LoginStep> get loginSteps {
         image: Assets.stepTwo,
         imageText: "text 2",
         title: "Enter Verification Code",
-        desc: ""),
+        desc: "Please Enter the 6-digit code sent to"),
   ];
 }
