@@ -1,8 +1,13 @@
 import 'package:equatable/equatable.dart';
+import 'package:riverflow/utils/service.dart';
+import 'package:riverpod/src/framework.dart';
 
 import './../domain/entities/entities.dart';
 
-abstract class UserAuthenticationService {
+abstract class UserAuthenticationService extends BaseService {
+  UserAuthenticationService(ProviderContainer providerContainer)
+      : super(providerContainer);
+
   Future<UserAuthEntity> emailLogin({required AuthenticationParams params});
   Future<UserAuthEntity> verifyPhoneNumber({
     required String phoneNumber,

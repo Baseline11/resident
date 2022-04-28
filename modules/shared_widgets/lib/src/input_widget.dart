@@ -6,6 +6,7 @@ class InputWidget extends StatelessWidget {
   final TextEditingController? controller;
   final Function(String)? onFieldSubmitted;
   final String? Function(String?)? validator;
+  final Function(String?)? onChanged;
   final Widget? suffix;
   final dynamic initialValue;
   final FocusNode? focusNode;
@@ -18,7 +19,10 @@ class InputWidget extends StatelessWidget {
       this.suffix,
       this.onFieldSubmitted,
       this.validator,
-      this.focusNode, this.initialValue, this.textInputType})
+      this.focusNode,
+      this.initialValue,
+      this.textInputType,
+      this.onChanged})
       : super(key: key);
 
   @override
@@ -34,6 +38,7 @@ class InputWidget extends StatelessWidget {
         controller: controller,
         keyboardType: textInputType,
         focusNode: focusNode,
+        onChanged: onChanged,
         onFieldSubmitted: onFieldSubmitted,
         validator: validator,
         decoration: InputDecoration(

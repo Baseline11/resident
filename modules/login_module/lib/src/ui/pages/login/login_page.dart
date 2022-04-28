@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:keyboard_service/keyboard_service.dart';
+import 'package:login_module/riverflow/signal/login_signal.dart';
 import 'package:login_module/src/ui/pages/login/widgets/login_step_one.dart';
 import 'package:login_module/src/ui/pages/login/widgets/login_step_two.dart';
 import 'package:login_module/src/ui/pages/login/widgets/steps_carousel_widget.dart';
@@ -46,6 +47,7 @@ class LoginPage extends HookConsumerWidget {
                           pageController.value.nextPage(
                               duration: const Duration(milliseconds: 300),
                               curve: Curves.easeIn);
+                          ref.watch(verifyNumberSignalProvider).dispatch();
                         },
                       ),
                       LoginStepTwo(onBackPressed: () {

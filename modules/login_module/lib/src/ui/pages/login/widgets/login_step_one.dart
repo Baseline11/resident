@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:login_module/riverflow/payload/login_flow_state_payload.dart';
+import 'package:login_module/riverflow/signal/login_flow_state_signal.dart';
 import 'package:login_module/src/login_steps.dart';
 import 'package:shared_widgets/shared_widgets.dart';
 
-class LoginStepOne extends StatelessWidget {
+class LoginStepOne extends ConsumerWidget {
   final Function onNextPressed;
 
-  const LoginStepOne({Key? key, required this.onNextPressed}) : super(key: key);
+  LoginStepOne({Key? key, required this.onNextPressed}) : super(key: key);
+
+  final phoneController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
     final step = loginSteps[0];
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -31,9 +36,15 @@ class LoginStepOne extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          const InputWidget(
+          InputWidget(
             hintText: "Phone",
             textInputType: TextInputType.phone,
+            controller: phoneController,
+            onChanged: (value) {
+              ref
+                  .watch(updateNumberSignalProvider)
+                  .dispatch(UpdateNumberPayload(number: value ?? ""));
+            },
           ),
           const SizedBox(
             height: 10,
@@ -51,9 +62,6 @@ class LoginStepOne extends StatelessWidget {
           ),
           PrimaryActionButton(
               onPressed: () {
-                // Todo:- Call signal here for firebase
-
-                //Todo: Refactor this out to be used with riverflow instead
                 onNextPressed();
               },
               text: "Proceed"),

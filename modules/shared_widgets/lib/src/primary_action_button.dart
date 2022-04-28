@@ -6,10 +6,12 @@ class PrimaryActionButton extends StatelessWidget {
   final Function onPressed;
   final String text;
   final Icon? trailingIcon;
+  final bool isDisabled;
 
   const PrimaryActionButton(
       {Key? key,
       required this.onPressed,
+      this.isDisabled = false,
       required this.text,
       this.trailingIcon})
       : super(key: key);
@@ -18,7 +20,11 @@ class PrimaryActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseWidget(
       widget: GestureDetector(
-        onTap: () => onPressed(),
+        onTap: () {
+          if (!isDisabled) {
+            onPressed();
+          }
+        },
         behavior: HitTestBehavior.translucent,
         child: Row(
           children: [

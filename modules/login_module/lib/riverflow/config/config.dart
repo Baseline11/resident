@@ -2,6 +2,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:login_module/riverflow/command/login_command.dart';
 import 'package:riverflow/utils/signal_command_map.dart';
 
+import '../command/login_flow_state_command.dart';
+
 ProviderContainer configureLoginModule(ProviderContainer parent) {
   var providerContainer = ProviderContainer(overrides: [
     signalCommandMapProvider.overrideWithProvider(
@@ -15,4 +17,5 @@ ProviderContainer configureLoginModule(ProviderContainer parent) {
 void mapCommands(ProviderContainer container) {
   final signalCommandMap = container.read(signalCommandMapProvider);
   mapLoginCommand(signalCommandMap);
+  mapLoginFlowStateCommands(signalCommandMap);
 }

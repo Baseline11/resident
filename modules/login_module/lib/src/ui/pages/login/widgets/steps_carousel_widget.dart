@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:login_module/riverflow/observable/login_flow_state_observable.dart';
+import 'package:login_module/riverflow/payload/login_flow_state_payload.dart';
+import 'package:login_module/riverflow/signal/login_flow_state_signal.dart';
 import 'package:login_module/src/login_steps.dart';
 
 class StepsCarouselWidget extends HookConsumerWidget {
@@ -48,7 +51,7 @@ class StepsCarouselWidget extends HookConsumerWidget {
       },
       options: CarouselOptions(
         height: MediaQuery.of(context).size.height / 2.4,
-        initialPage: currentIndex.value,
+        initialPage: ref.watch(loginFlowStateObservableProvider).currentPage,
         viewportFraction: 0.65,
         scrollPhysics: const NeverScrollableScrollPhysics(),
         enableInfiniteScroll: false,
@@ -57,6 +60,9 @@ class StepsCarouselWidget extends HookConsumerWidget {
         scrollDirection: Axis.horizontal,
         onPageChanged: (index, _) {
           currentIndex.value = index;
+          ref
+              .watch(updateCurrentPageSignalProvider)
+              .dispatch(UpdateCurrentPagePayload(index: index));
         },
       ),
     );

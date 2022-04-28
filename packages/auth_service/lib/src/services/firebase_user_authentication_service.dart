@@ -1,20 +1,21 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import './../domain/entities/entities.dart';
-
+import './auth_state.dart';
 import './user_authentication_service.dart';
 
-import './auth_state.dart';
-
-class FirebaseUserAuthenticationService implements UserAuthenticationService {
+class FirebaseUserAuthenticationService extends UserAuthenticationService {
   final AuthState state = AuthState();
-  final FirebaseAuth auth;
+  late FirebaseAuth? auth;
 
-  FirebaseUserAuthenticationService({
-    required this.auth,
-  });
+  FirebaseUserAuthenticationService(
+      {this.auth, required ProviderContainer container})
+      : super(container) {
+    auth ??= FirebaseAuth.instance;
+  }
 
   @override
   Future<UserAuthEntity> emailLogin({
@@ -25,7 +26,7 @@ class FirebaseUserAuthenticationService implements UserAuthenticationService {
           FirebaseAuthenticationParams.fromDomain(params);
 
       final UserCredential userCredential =
-          await auth.signInWithEmailAndPassword(
+          await auth!.signInWithEmailAndPassword(
         email: firebaseParams.email,
         password: firebaseParams.password,
       );
@@ -53,14 +54,14 @@ class FirebaseUserAuthenticationService implements UserAuthenticationService {
       UserCredential? userCredential;
       final authenticationHasEnded = Completer<bool>();
 
-      await auth.verifyPhoneNumber(
+      await auth!.verifyPhoneNumber(
         forceResendingToken: forceResend == true ? state.resendToken : null,
         phoneNumber: phoneNumber,
         verificationCompleted: (PhoneAuthCredential credential) async {
           // ANDROID ONLY!
 
           // Sign the user in (or link) with the auto-generated credential
-          userCredential = await auth.signInWithCredential(credential);
+          userCredential = await auth!.signInWithCredential(credential);
           authenticationHasEnded.complete(true);
         },
         verificationFailed: (FirebaseAuthException e) {
@@ -117,7 +118,7 @@ class FirebaseUserAuthenticationService implements UserAuthenticationService {
 
       // Sign the user in (or link) with the credential
       final UserCredential userCredential =
-          await auth.signInWithCredential(credential);
+          await auth!.signInWithCredential(credential);
 
       if (userCredential.user != null) {
         // update the state

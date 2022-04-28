@@ -20,6 +20,10 @@ dependencies:
   shared_widgets:
     path: ../shared_widgets
 
+  auth_service:
+    path: ../../packages/auth_service
+
+
   root:
     path: ../root
   riverflow:
@@ -35,6 +39,7 @@ dev_dependencies:
   build_runner: ^2.1.10
   freezed: ^2.0.2
   flutter_gen_runner: 4.1.6
+  firebase_auth_mocks:
 
 flutter_gen:
   output: lib/components/assets
