@@ -46,7 +46,7 @@ class FirebaseUserAuthenticationService extends UserAuthenticationService {
   }
 
   @override
-  Future<UserAuthEntity> verifyPhoneNumber({
+  Future<bool> verifyPhoneNumber({
     required String phoneNumber,
     bool forceResend = false,
   }) async {
@@ -57,24 +57,14 @@ class FirebaseUserAuthenticationService extends UserAuthenticationService {
       await auth!.verifyPhoneNumber(
         forceResendingToken: forceResend == true ? state.resendToken : null,
         phoneNumber: phoneNumber,
-        verificationCompleted: (PhoneAuthCredential credential) async {
-          // ANDROID ONLY!
-
-          // Sign the user in (or link) with the auto-generated credential
-          userCredential = await auth!.signInWithCredential(credential);
-          authenticationHasEnded.complete(true);
-        },
+        verificationCompleted: (PhoneAuthCredential credential) async {},
         verificationFailed: (FirebaseAuthException e) {
           throw e;
         },
         codeSent: (String verificationId, int? resendToken) async {
           state.verificationId = verificationId;
-          if (resendToken != null) {
-            state.resendToken = resendToken;
-          }
-
-          // update the state
-          state.name = AuthStateNameEnum.codeSent;
+          state.resendToken = resendToken;
+          authenticationHasEnded.complete(true);
         },
         codeAutoRetrievalTimeout: (String verificationId) {
           throw Exception();
@@ -83,17 +73,10 @@ class FirebaseUserAuthenticationService extends UserAuthenticationService {
 
       await authenticationHasEnded.future;
 
-      if (userCredential?.user != null) {
-        // update the state
-        state.name = AuthStateNameEnum.completed;
-
-        return UserAuthEntity(
-          token: userCredential!.user!.uid,
-          email: userCredential!.user!.email,
-          phoneNumber: userCredential!.user!.phoneNumber,
-        );
+      if (state.verificationId != null) {
+        return true;
       } else {
-        throw Exception();
+        return false;
       }
     } catch (e) {
       // TODO: map the type of exception I should throw
@@ -121,9 +104,6 @@ class FirebaseUserAuthenticationService extends UserAuthenticationService {
           await auth!.signInWithCredential(credential);
 
       if (userCredential.user != null) {
-        // update the state
-        state.name = AuthStateNameEnum.completed;
-
         return UserAuthEntity(
           token: userCredential.user!.uid,
           email: userCredential.user!.email,

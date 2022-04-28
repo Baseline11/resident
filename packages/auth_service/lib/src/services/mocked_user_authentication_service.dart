@@ -18,8 +18,8 @@ class MockedUserAuthService extends UserAuthenticationService {
   }
 
   @override
-  Future<UserAuthEntity> verifyPhoneNumber(
+  Future<bool> verifyPhoneNumber(
       {required String phoneNumber, bool forceResend = false}) async {
-    return UserAuthEntity(token: "token");
+    return true;
   }
 }
