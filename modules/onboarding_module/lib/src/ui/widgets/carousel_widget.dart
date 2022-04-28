@@ -22,15 +22,26 @@ class CarouselWidget extends HookWidget {
           itemBuilder:
               (BuildContext context, int itemIndex, int pageViewIndex) {
             final item = onboardingItems.elementAt(itemIndex);
-            return Opacity(
-              opacity: currentIndex.value != itemIndex ? 0.7 : 1,
-              child: item.image.image(),
+            final isCurrentItem = currentIndex.value == itemIndex;
+            final isPreviousItem = pageViewIndex < currentIndex.value;
+
+            return Transform.rotate(
+              angle: isCurrentItem
+                  ? 0
+                  : (isPreviousItem)
+                      ? -0.08
+                      : 0.08,
+              child: Opacity(
+                opacity: isCurrentItem ? 1 : 0.7,
+                child: item.image.image(
+                    height: MediaQuery.of(context).size.height / 2, width: 274),
+              ),
             );
           },
           options: CarouselOptions(
-              height: MediaQuery.of(context).size.height / 2,
+              height: MediaQuery.of(context).size.height / 1.9,
               initialPage: 0,
-              viewportFraction: 0.60,
+              viewportFraction: 0.70,
               enableInfiniteScroll: false,
               autoPlay: false,
               enlargeCenterPage: true,
