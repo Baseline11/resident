@@ -9,7 +9,7 @@ abstract class UserAuthenticationService extends BaseService {
       : super(providerContainer);
 
   Future<UserAuthEntity> emailLogin({required AuthenticationParams params});
-  Future<UserAuthEntity> verifyPhoneNumber({
+  Future<bool> verifyPhoneNumber({
     required String phoneNumber,
     bool forceResend,
   });

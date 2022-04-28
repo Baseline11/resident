@@ -81,13 +81,11 @@ void main() {
     test(
         'Should return a valid UserAuthEntity if authentication with phoneNumber proceeds',
         () async {
-      sut.verifyPhoneNumber(
+      final bool codeSent = await sut.verifyPhoneNumber(
         phoneNumber: phoneNumber,
       );
 
-      await Future.delayed(const Duration(seconds: 1));
-
-      expect(sut.state.name, AuthStateNameEnum.codeSent);
+      expect(codeSent, true);
 
       final UserAuthEntity result = await sut.verifyCode(
         code: 'any_code',
