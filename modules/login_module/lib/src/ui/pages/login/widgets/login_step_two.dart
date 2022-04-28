@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:login_module/components/assets/assets.gen.dart';
 import 'package:login_module/riverflow/observable/login_flow_state_observable.dart';
+import 'package:login_module/riverflow/signal/login_signal.dart';
 import 'package:pinput/pinput.dart';
+import 'package:shared_widgets/shared_widgets.dart';
 
 import '../../../../login_steps.dart';
 
@@ -37,7 +40,30 @@ class LoginStepTwo extends ConsumerWidget {
               color: Colors.white,
             ),
           ),
-          Text(loginState.phoneNumber),
+          const SizedBox(
+            height: 10,
+          ),
+          GestureDetector(
+            behavior: HitTestBehavior.translucent,
+            onTap: () => onBackPressed(),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  loginState.phoneNumber,
+                  style: const TextStyle(
+                      fontSize: 17,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600),
+                ),
+                const SizedBox(
+                  width: 4,
+                ),
+                Assets.iconEdit.image(width: 22, height: 22, fit: BoxFit.cover),
+              ],
+            ),
+          ),
           const SizedBox(
             height: 36,
           ),
@@ -53,7 +79,16 @@ class LoginStepTwo extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(14),
               ),
             ),
-          )
+          ),
+          const Spacer(),
+          CountdownTimerButton(
+            text: "Resend PIN",
+            seconds: 30,
+            onPressed: () {
+              ref.watch(verifyNumberSignalProvider).dispatch();
+            },
+          ),
+          const Spacer(),
         ],
       ),
     );

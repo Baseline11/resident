@@ -5,7 +5,7 @@ import 'package:login_module/riverflow/signal/login_flow_state_signal.dart';
 import 'package:login_module/src/login_steps.dart';
 import 'package:shared_widgets/shared_widgets.dart';
 
-class LoginStepOne extends ConsumerWidget {
+class LoginStepOne extends HookConsumerWidget {
   final Function onNextPressed;
 
   LoginStepOne({Key? key, required this.onNextPressed}) : super(key: key);

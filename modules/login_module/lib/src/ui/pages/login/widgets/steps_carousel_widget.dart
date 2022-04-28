@@ -1,7 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:login_module/riverflow/observable/login_flow_state_observable.dart';
 import 'package:login_module/riverflow/payload/login_flow_state_payload.dart';
@@ -15,14 +14,14 @@ class StepsCarouselWidget extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    var currentIndex = useState(0);
+    var currentIndex = ref.watch(loginFlowStateObservableProvider).currentPage;
     return CarouselSlider.builder(
       carouselController: controller,
       itemCount: loginSteps.length,
       itemBuilder: (_, index, pageIndex) {
         final item = loginSteps.elementAt(index);
-        final isCurrentItem = currentIndex.value == pageIndex;
-        final isPreviousItem = pageIndex < currentIndex.value;
+        final isCurrentItem = currentIndex == pageIndex;
+        final isPreviousItem = pageIndex < currentIndex;
 
         return Transform.rotate(
           angle: isCurrentItem
@@ -51,7 +50,7 @@ class StepsCarouselWidget extends HookConsumerWidget {
       },
       options: CarouselOptions(
         height: MediaQuery.of(context).size.height / 2.4,
-        initialPage: ref.watch(loginFlowStateObservableProvider).currentPage,
+        initialPage: currentIndex,
         viewportFraction: 0.65,
         scrollPhysics: const NeverScrollableScrollPhysics(),
         enableInfiniteScroll: false,
@@ -59,7 +58,6 @@ class StepsCarouselWidget extends HookConsumerWidget {
         enlargeCenterPage: true,
         scrollDirection: Axis.horizontal,
         onPageChanged: (index, _) {
-          currentIndex.value = index;
           ref
               .watch(updateCurrentPageSignalProvider)
               .dispatch(UpdateCurrentPagePayload(index: index));
