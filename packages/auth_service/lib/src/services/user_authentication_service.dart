@@ -1,4 +1,3 @@
-import 'package:equatable/equatable.dart';
 import 'package:riverflow/utils/service.dart';
 import 'package:riverpod/src/framework.dart';
 
@@ -16,12 +15,9 @@ abstract class UserAuthenticationService extends BaseService {
   Future<UserAuthEntity> verifyCode({required String code});
 }
 
-class AuthenticationParams extends Equatable {
+class AuthenticationParams {
   final String email;
   final String secret;
-
-  @override
-  List get props => [email, secret];
 
   const AuthenticationParams({
     required this.email,
