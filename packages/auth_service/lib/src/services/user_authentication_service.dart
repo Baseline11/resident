@@ -1,5 +1,5 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverflow/utils/service.dart';
-import 'package:riverpod/src/framework.dart';
 
 import './../domain/entities/entities.dart';
 
