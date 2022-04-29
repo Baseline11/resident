@@ -51,7 +51,6 @@ class FirebaseUserAuthenticationService extends UserAuthenticationService {
     bool forceResend = false,
   }) async {
     try {
-      UserCredential? userCredential;
       final authenticationHasEnded = Completer<bool>();
 
       await auth!.verifyPhoneNumber(
