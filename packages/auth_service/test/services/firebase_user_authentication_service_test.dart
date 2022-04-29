@@ -1,8 +1,5 @@
-import 'dart:async';
-
 import 'package:auth_service/auth_service.dart';
 import 'package:auth_service/src/domain/entities/entities.dart';
-import 'package:auth_service/src/services/auth_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_auth_mocks/firebase_auth_mocks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
