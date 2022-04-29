@@ -13,7 +13,7 @@ class LoginModule extends StatelessWidget {
         configure: () =>
             configureLoginModule(ProviderScope.containerOf(context)),
         builder: (_) => Navigator(
-              pages: [
+              pages: const [
                 MaterialPage(child: LoginPage()),
               ],
               onPopPage: (route, result) {
