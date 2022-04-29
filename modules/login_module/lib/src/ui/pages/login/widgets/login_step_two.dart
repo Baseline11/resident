@@ -79,6 +79,9 @@ class LoginStepTwo extends ConsumerWidget {
                 borderRadius: BorderRadius.circular(14),
               ),
             ),
+            onCompleted: (value) {
+              ref.watch(verifyCodeSignalProvider).dispatch(value);
+            },
           ),
           const Spacer(),
           CountdownTimerButton(

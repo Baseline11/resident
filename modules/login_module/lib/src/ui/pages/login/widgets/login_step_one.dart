@@ -61,10 +61,11 @@ class LoginStepOne extends HookConsumerWidget {
             height: 30,
           ),
           PrimaryActionButton(
-              onPressed: () {
-                onNextPressed();
-              },
-              text: "Proceed"),
+            onPressed: () {
+              onNextPressed();
+            },
+            text: "Proceed",
+          ),
           const SizedBox(
             height: 10,
           ),

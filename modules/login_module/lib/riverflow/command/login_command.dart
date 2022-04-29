@@ -44,3 +44,20 @@ class VerifyNumberCommand extends Command0 {
     readStore(loginFlowStoreProvider).codeSent();
   }
 }
+
+class VerifyCodeCommand extends Command0 {
+  VerifyCodeCommand(ProviderContainer container) : super(container);
+
+  @override
+  void execute() async {
+    // Todo: @matej add read service on command level as well
+    LoginFlowStateObservable observable =
+        providerContainer.read(loginFlowStateObservableProvider);
+    final response = await readService(authServiceProvider)
+        .verifyCode(code: observable.code);
+
+    //Todo: Check if true send code method is called
+
+    readStore(loginFlowStoreProvider).codeSent();
+  }
+}

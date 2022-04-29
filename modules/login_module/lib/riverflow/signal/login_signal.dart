@@ -10,3 +10,7 @@ class LoginUserSignal extends Signal1<LoginUserPayload> {}
 var verifyNumberSignalProvider = Provider((ref) => VerifyNumberSignal());
 
 class VerifyNumberSignal extends Signal0 {}
+
+var verifyCodeSignalProvider = Provider((ref) => VerifyCodeSignal());
+
+class VerifyCodeSignal extends Signal1<String> {}
