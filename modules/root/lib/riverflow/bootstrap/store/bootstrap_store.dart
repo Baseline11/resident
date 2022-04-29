@@ -1,6 +1,5 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverflow/utils/store.dart';
-import 'package:riverpod/src/framework.dart';
-import 'package:riverpod/src/provider.dart';
 import 'package:root/riverflow/bootstrap/observable/bootstrap_observable.dart';
 
 final bootstrapStoreProvider = Provider((ref) => BootstrapStore(ref.container));
