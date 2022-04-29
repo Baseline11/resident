@@ -12,6 +12,5 @@ class LoginFlowStateObservable with _$LoginFlowStateObservable {
     @Default(0) int currentPage,
     @Default("") String countryCode,
     @Default("") String phoneNumber,
-    @Default("") String code,
   }) = _LoginFlowStateObservable;
 }

@@ -20,3 +20,8 @@ class UpdateCurrentPagePayload with _$UpdateCurrentPagePayload {
   factory UpdateCurrentPagePayload({required int index}) =
       _UpdateCurrentPagePayload;
 }
+
+@freezed
+class AddCodePayload with _$AddCodePayload {
+  factory AddCodePayload({required String code}) = _AddCodePayload;
+}

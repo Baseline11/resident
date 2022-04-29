@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:login_module/components/assets/assets.gen.dart';
 import 'package:login_module/riverflow/observable/login_flow_state_observable.dart';
+import 'package:login_module/riverflow/payload/login_flow_state_payload.dart';
 import 'package:login_module/riverflow/signal/login_signal.dart';
 import 'package:pinput/pinput.dart';
 import 'package:shared_widgets/shared_widgets.dart';
@@ -80,7 +81,11 @@ class LoginStepTwo extends ConsumerWidget {
               ),
             ),
             onCompleted: (value) {
-              ref.watch(verifyCodeSignalProvider).dispatch(value);
+              ref.watch(verifyCodeSignalProvider).dispatch(
+                    AddCodePayload(
+                      code: value,
+                    ),
+                  );
             },
           ),
           const Spacer(),
