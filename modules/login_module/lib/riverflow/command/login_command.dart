@@ -66,14 +66,12 @@ class VerifyCodeCommand extends Command1<AddCodePayload> {
       final UserAuthEntity user =
           await readService(authServiceProvider).verifyCode(code: payload.code);
 
-      // TODO: Action if the user entered a wrong or correct code
-      if (user != null) {
-        // AUTHENTICATED
-      } else {
-        // WRONG CODE
-      }
+      // TODO: Action when athenticated
+      // AUTHENTICATED
+
     } catch (error) {
-      // TODO: Action when exception
+      // TODO: Action when exception, it can be a wrong code
+      // WRONG CODE
     }
   }
 }
