@@ -2,7 +2,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:login_module/riverflow/observable/login_flow_state_observable.dart';
 import 'package:login_module/riverflow/payload/login_flow_state_payload.dart';
 import 'package:riverflow/utils/store.dart';
-import 'package:riverpod/src/framework.dart';
 
 var loginFlowStoreProvider = Provider((ref) => LoginFlowStore(ref.container));
 
@@ -31,5 +30,23 @@ class LoginFlowStore extends BaseStore {
   void updatePageNumber(UpdateCurrentPagePayload payload) {
     writeObservable(loginFlowStateObservableProvider,
         observable.copyWith(currentPage: payload.index));
+  }
+
+  void updateIsLoadingStep1(UpdateIsLoadingStep1Payload payload) {
+    writeObservable(
+      loginFlowStateObservableProvider,
+      observable.copyWith(
+        isLoadingStep1: payload.isLoading,
+      ),
+    );
+  }
+
+  void updateIsLoadingStep2(UpdateIsLoadingStep2Payload payload) {
+    writeObservable(
+      loginFlowStateObservableProvider,
+      observable.copyWith(
+        isLoadingStep2: payload.isLoading,
+      ),
+    );
   }
 }

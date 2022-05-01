@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -43,10 +45,12 @@ class LoginPage extends HookConsumerWidget {
                     children: [
                       LoginStepOne(
                         onNextPressed: () {
+                          /*
                           carouselController.value.nextPage();
                           pageController.value.nextPage(
                               duration: const Duration(milliseconds: 300),
                               curve: Curves.easeIn);
+                          */
                           ref.watch(verifyNumberSignalProvider).dispatch();
                         },
                       ),

@@ -40,12 +40,18 @@ class VerifyNumberCommand extends Command0 {
   void execute() async {
     // Todo: @matej add read service on command level as well
     try {
+      // updating isLoading to true
+      readStore(loginFlowStoreProvider)
+          .updateIsLoadingStep1(UpdateIsLoadingStep1Payload(isLoading: true));
+
       LoginFlowStateObservable observable =
           providerContainer.read(loginFlowStateObservableProvider);
+
       final bool hasCodeBeenSent = await readService(authServiceProvider)
           .verifyPhoneNumber(phoneNumber: observable.phoneNumber);
 
       if (hasCodeBeenSent == true) {
+        // It should send to the Step 2 screen
         readStore(loginFlowStoreProvider).codeSent();
       } else {
         // TODO: Action if we couldn't send the code

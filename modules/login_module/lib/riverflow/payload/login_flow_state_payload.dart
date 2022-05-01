@@ -25,3 +25,21 @@ class UpdateCurrentPagePayload with _$UpdateCurrentPagePayload {
 class VerifyCodePayload with _$VerifyCodePayload {
   factory VerifyCodePayload({required String code}) = _VerifyCodePayload;
 }
+
+@freezed
+class UpdateIsLoadingStep1Payload with _$UpdateIsLoadingStep1Payload {
+  factory UpdateIsLoadingStep1Payload({required bool isLoading}) =
+      _UpdateIsLoadingStep1Payload;
+}
+
+@freezed
+class UpdateIsLoadingStep2Payload with _$UpdateIsLoadingStep2Payload {
+  factory UpdateIsLoadingStep2Payload({required bool isLoading}) =
+      _UpdateIsLoadingStep2Payload;
+}
+
+@freezed
+class UpdateIsFormValidStep1Payload with _$UpdateIsFormValidStep1Payload {
+  factory UpdateIsFormValidStep1Payload({required bool isFormValid}) =
+      _UpdateIsFormValidStep1Payload;
+}

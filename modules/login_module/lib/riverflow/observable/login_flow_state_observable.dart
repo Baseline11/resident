@@ -8,9 +8,15 @@ final loginFlowStateObservableProvider =
 
 @freezed
 class LoginFlowStateObservable with _$LoginFlowStateObservable {
+  const LoginFlowStateObservable._();
+
   factory LoginFlowStateObservable({
     @Default(0) int currentPage,
-    @Default("") String countryCode,
+    @Default("Canada") String countryCode,
     @Default("") String phoneNumber,
+    @Default(false) bool isLoadingStep1,
+    @Default(false) bool isLoadingStep2,
   }) = _LoginFlowStateObservable;
+
+  bool get isFormValidStep1 => phoneNumber.isNotEmpty && countryCode.isNotEmpty;
 }

@@ -34,6 +34,26 @@ class UpdateNumberCommand extends Command1<UpdateNumberPayload> {
   }
 }
 
+class UpdateIsLoadingStep1Command
+    extends Command1<UpdateIsLoadingStep1Payload> {
+  UpdateIsLoadingStep1Command(ProviderContainer container) : super(container);
+
+  @override
+  void execute(UpdateIsLoadingStep1Payload payload) {
+    readStore(loginFlowStoreProvider).updateIsLoadingStep1(payload);
+  }
+}
+
+class UpdateIsLoadingStep2Command
+    extends Command1<UpdateIsLoadingStep2Payload> {
+  UpdateIsLoadingStep2Command(ProviderContainer container) : super(container);
+
+  @override
+  void execute(UpdateIsLoadingStep2Payload payload) {
+    readStore(loginFlowStoreProvider).updateIsLoadingStep2(payload);
+  }
+}
+
 class UpdateCurrentPageCommand extends Command1<UpdateCurrentPagePayload> {
   UpdateCurrentPageCommand(ProviderContainer container) : super(container);
 

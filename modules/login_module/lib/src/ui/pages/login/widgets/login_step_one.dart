@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:login_module/riverflow/observable/login_flow_state_observable.dart';
 import 'package:login_module/riverflow/payload/login_flow_state_payload.dart';
 import 'package:login_module/riverflow/signal/login_flow_state_signal.dart';
 import 'package:login_module/src/login_steps.dart';
@@ -16,9 +17,10 @@ class LoginStepOne extends HookConsumerWidget {
   Widget build(BuildContext context, ref) {
     final step = loginSteps[0];
 
-    // TODO: get these values
-    final bool isFormValid = true;
-    final bool isLoading = false;
+    final loginState = ref.watch(loginFlowStateObservableProvider);
+
+    final bool isFormValid = loginState.isFormValidStep1;
+    final bool isLoading = loginState.isLoadingStep1;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
