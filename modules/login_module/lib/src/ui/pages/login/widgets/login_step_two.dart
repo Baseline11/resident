@@ -82,7 +82,7 @@ class LoginStepTwo extends ConsumerWidget {
             ),
             onCompleted: (value) {
               ref.watch(verifyCodeSignalProvider).dispatch(
-                    AddCodePayload(
+                    VerifyCodePayload(
                       code: value,
                     ),
                   );

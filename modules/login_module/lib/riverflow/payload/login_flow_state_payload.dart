@@ -22,6 +22,6 @@ class UpdateCurrentPagePayload with _$UpdateCurrentPagePayload {
 }
 
 @freezed
-class AddCodePayload with _$AddCodePayload {
-  factory AddCodePayload({required String code}) = _AddCodePayload;
+class VerifyCodePayload with _$VerifyCodePayload {
+  factory VerifyCodePayload({required String code}) = _VerifyCodePayload;
 }

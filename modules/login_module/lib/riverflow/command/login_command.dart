@@ -57,11 +57,11 @@ class VerifyNumberCommand extends Command0 {
   }
 }
 
-class VerifyCodeCommand extends Command1<AddCodePayload> {
+class VerifyCodeCommand extends Command1<VerifyCodePayload> {
   VerifyCodeCommand(ProviderContainer container) : super(container);
 
   @override
-  void execute(AddCodePayload payload) async {
+  void execute(VerifyCodePayload payload) async {
     try {
       final UserAuthEntity user =
           await readService(authServiceProvider).verifyCode(code: payload.code);

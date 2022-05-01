@@ -13,4 +13,4 @@ class VerifyNumberSignal extends Signal0 {}
 
 var verifyCodeSignalProvider = Provider((ref) => VerifyCodeSignal());
 
-class VerifyCodeSignal extends Signal1<AddCodePayload> {}
+class VerifyCodeSignal extends Signal1<VerifyCodePayload> {}
