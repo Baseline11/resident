@@ -1,5 +1,7 @@
 import 'package:login_module/components/assets/assets.gen.dart';
 
+import './ui/helpers/helpers.dart';
+
 class LoginStep {
   final AssetGenImage image;
   final String imageText;
@@ -19,12 +21,12 @@ List<LoginStep> get loginSteps {
     LoginStep(
         image: Assets.stepOne,
         imageText: "text 1",
-        title: "To start, please validate your mobile phone number.",
+        title: R.strings.step1Title,
         desc: ""),
     LoginStep(
         image: Assets.stepTwo,
         imageText: "text 2",
-        title: "Enter Verification Code",
+        title: R.strings.step2Title,
         desc: "Please Enter the 6-digit code sent to"),
   ];
 }
