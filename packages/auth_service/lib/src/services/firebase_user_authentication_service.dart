@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import './../domain/entities/entities.dart';
+import './../domain/domain.dart';
 import './auth_state.dart';
 import './user_authentication_service.dart';
 
@@ -11,9 +11,10 @@ class FirebaseUserAuthenticationService extends UserAuthenticationService {
   final AuthState state = AuthState();
   late FirebaseAuth? auth;
 
-  FirebaseUserAuthenticationService(
-      {this.auth, required ProviderContainer container})
-      : super(container) {
+  FirebaseUserAuthenticationService({
+    this.auth,
+    required ProviderContainer container,
+  }) : super(container) {
     auth ??= FirebaseAuth.instance;
   }
 
@@ -39,9 +40,15 @@ class FirebaseUserAuthenticationService extends UserAuthenticationService {
       } else {
         throw Exception();
       }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == FirebaseExceptionError.wrongPassword.toCode ||
+          e.code == FirebaseExceptionError.userNotFound.toCode) {
+        throw throw UserAuthenticationServiceError.invalidCredentials;
+      }
+
+      throw UserAuthenticationServiceError.unexpected;
     } catch (e) {
-      // TODO: map the type of exception I should throw
-      rethrow;
+      throw UserAuthenticationServiceError.unexpected;
     }
   }
 
@@ -78,8 +85,7 @@ class FirebaseUserAuthenticationService extends UserAuthenticationService {
         return false;
       }
     } catch (e) {
-      // TODO: map the type of exception I should throw
-      rethrow;
+      throw UserAuthenticationServiceError.unexpected;
     }
   }
 
@@ -111,9 +117,14 @@ class FirebaseUserAuthenticationService extends UserAuthenticationService {
       } else {
         throw Exception();
       }
-    } catch (e) {
-      // TODO: map the type of exception I should throw
-      rethrow;
+    } on FirebaseAuthException catch (error) {
+      if (error.code == FirebaseExceptionError.invalidVerificationCode.toCode) {
+        throw UserAuthenticationServiceError.invalidVerificationCode;
+      }
+
+      throw UserAuthenticationServiceError.unexpected;
+    } catch (error) {
+      throw UserAuthenticationServiceError.unexpected;
     }
   }
 }
