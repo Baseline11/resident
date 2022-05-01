@@ -52,7 +52,7 @@ class VerifyNumberCommand extends Command0 {
         // WE COULDNT SEND THE CODE... TRY AGAIN?
       }
     } catch (error) {
-      // TODO: Action when exception
+      // TODO: Action when unexpected
     }
   }
 }

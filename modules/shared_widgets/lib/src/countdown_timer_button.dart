@@ -77,12 +77,13 @@ class _CountdownTimerButtonState extends State<CountdownTimerButton> {
 
   Widget get _enabledState {
     return PrimaryActionButton(
-        onPressed: () {
-          setState(() {
-            isDisabled = true;
-          });
-          widget.onPressed();
-        },
-        text: "Resend PIN");
+      onPressed: () {
+        setState(() {
+          isDisabled = true;
+        });
+        widget.onPressed();
+      },
+      buttonText: "Resend PIN",
+    );
   }
 }

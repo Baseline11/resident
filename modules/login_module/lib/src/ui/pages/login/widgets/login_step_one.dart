@@ -6,7 +6,7 @@ import 'package:login_module/src/login_steps.dart';
 import 'package:shared_widgets/shared_widgets.dart';
 
 class LoginStepOne extends HookConsumerWidget {
-  final Function onNextPressed;
+  final Function() onNextPressed;
 
   LoginStepOne({Key? key, required this.onNextPressed}) : super(key: key);
 
@@ -15,6 +15,11 @@ class LoginStepOne extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final step = loginSteps[0];
+
+    // TODO: get these values
+    final bool isFormValid = true;
+    final bool isLoading = false;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -61,10 +66,9 @@ class LoginStepOne extends HookConsumerWidget {
             height: 30,
           ),
           PrimaryActionButton(
-            onPressed: () {
-              onNextPressed();
-            },
-            text: "Proceed",
+            onPressed: isFormValid ? onNextPressed : null,
+            buttonText: "Proceed",
+            isLoading: isLoading,
           ),
           const SizedBox(
             height: 10,
