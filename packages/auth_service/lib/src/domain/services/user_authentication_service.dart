@@ -1,7 +1,7 @@
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:riverflow/utils/service.dart';
 
-import './../domain/entities/entities.dart';
+import './../entities/entities.dart';
 
 abstract class UserAuthenticationService extends BaseService {
   UserAuthenticationService(ProviderContainer providerContainer)
@@ -10,7 +10,7 @@ abstract class UserAuthenticationService extends BaseService {
   /*
     It returns:
     - UserAuthEntity if the user has been authenticated with the params
-    - InvalidCredentials exeption if the credentials are invalid
+    - throws InvalidCredentials exeption if the credentials are invalid
     - throws Unexpected exeption if something goes wrong
   */
   Future<UserAuthEntity> emailLogin({required AuthenticationParams params});

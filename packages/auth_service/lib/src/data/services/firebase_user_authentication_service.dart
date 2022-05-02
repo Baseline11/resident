@@ -3,9 +3,8 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import './../domain/domain.dart';
+import './../../domain/domain.dart';
 import './auth_state.dart';
-import './user_authentication_service.dart';
 
 class FirebaseUserAuthenticationService extends UserAuthenticationService {
   final AuthState state = AuthState();
