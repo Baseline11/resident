@@ -68,7 +68,11 @@ class LoginStepOne extends HookConsumerWidget {
             height: 30,
           ),
           PrimaryActionButton(
-            onPressed: isFormValid ? onNextPressed : null,
+            onPressed: !isLoading
+                ? isFormValid
+                    ? onNextPressed
+                    : null
+                : null,
             buttonText: "Proceed",
             isLoading: isLoading,
           ),
