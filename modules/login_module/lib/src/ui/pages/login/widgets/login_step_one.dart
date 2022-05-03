@@ -67,6 +67,7 @@ class LoginStepOne extends HookConsumerWidget {
           const SizedBox(
             height: 30,
           ),
+          // TODO: use SingleChildScrollView to prevent overflow like this
           Flexible(
             child: PrimaryActionButton(
               onPressed: !isLoading
