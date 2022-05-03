@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:login_module/riverflow/observable/login_flow_state_observable.dart';
 import 'package:login_module/riverflow/payload/login_flow_state_payload.dart';
 import 'package:login_module/riverflow/signal/login_flow_state_signal.dart';
 import 'package:login_module/src/login_steps.dart';
 import 'package:shared_widgets/shared_widgets.dart';
 
 class LoginStepOne extends HookConsumerWidget {
-  final Function onNextPressed;
+  final Function() onNextPressed;
 
   LoginStepOne({Key? key, required this.onNextPressed}) : super(key: key);
 
@@ -15,6 +16,12 @@ class LoginStepOne extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
     final step = loginSteps[0];
+
+    final loginState = ref.watch(loginFlowStateObservableProvider);
+
+    final bool isFormValid = loginState.isFormValidStep1;
+    final bool isLoading = loginState.isLoadingStep1;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -60,11 +67,18 @@ class LoginStepOne extends HookConsumerWidget {
           const SizedBox(
             height: 30,
           ),
-          PrimaryActionButton(
-              onPressed: () {
-                onNextPressed();
-              },
-              text: "Proceed"),
+          // TODO: use SingleChildScrollView to prevent overflow like this
+          Flexible(
+            child: PrimaryActionButton(
+              onPressed: !isLoading
+                  ? isFormValid
+                      ? onNextPressed
+                      : null
+                  : null,
+              buttonText: "Proceed",
+              isLoading: isLoading,
+            ),
+          ),
           const SizedBox(
             height: 10,
           ),

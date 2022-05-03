@@ -27,7 +27,7 @@ class ActionButtonsWidget extends ConsumerWidget {
                 onPressed: () {
                   controller.nextPage();
                 },
-                text: "Next"),
+                buttonText: "Next"),
           ),
         if (!isLastPage)
           TextButton(
@@ -45,8 +45,8 @@ class ActionButtonsWidget extends ConsumerWidget {
               onPressed: () {
                 ref.watch(completeOnboardingSignalProvider).dispatch();
               },
-              text: "Get Started",
-              trailingIcon: const Icon(
+              buttonText: "Get Started",
+              trailingWidget: const Icon(
                 Icons.arrow_forward,
                 color: Colors.blue,
               ),

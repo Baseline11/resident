@@ -2,6 +2,7 @@ name: auth_service
 description: A new Flutter package project.
 version: 0.0.1
 homepage:
+publish_to: none
 
 environment:
   sdk: ">=2.16.2 <3.0.0"
@@ -18,13 +19,13 @@ dependencies:
     git:
       url: https://github.com/Baseline11/riverflow.git
       ref: main
+  faker: ^2.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^1.0.0
   test: 
-  faker: 
   mocktail:
   firebase_auth_mocks: 
   freezed:

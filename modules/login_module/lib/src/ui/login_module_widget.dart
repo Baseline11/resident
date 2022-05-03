@@ -10,15 +10,15 @@ class LoginModule extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ModuleWidget(
-        configure: () =>
-            configureLoginModule(ProviderScope.containerOf(context)),
-        builder: (_) => Navigator(
-              pages: [
-                MaterialPage(child: LoginPage()),
-              ],
-              onPopPage: (route, result) {
-                return route.didPop(result);
-              },
-            ));
+      configure: () => configureLoginModule(ProviderScope.containerOf(context)),
+      builder: (_) => Navigator(
+        pages: const [
+          MaterialPage(child: LoginPage()),
+        ],
+        onPopPage: (route, result) {
+          return route.didPop(result);
+        },
+      ),
+    );
   }
 }

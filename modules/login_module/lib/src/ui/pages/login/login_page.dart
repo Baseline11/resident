@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:keyboard_service/keyboard_service.dart';
+import 'package:login_module/riverflow/observable/login_flow_state_observable.dart';
 import 'package:login_module/riverflow/signal/login_signal.dart';
 import 'package:login_module/src/ui/pages/login/widgets/login_step_one.dart';
 import 'package:login_module/src/ui/pages/login/widgets/login_step_two.dart';
@@ -17,6 +18,15 @@ class LoginPage extends HookConsumerWidget {
     final pageController = useState(PageController());
 
     final isKeyboardVisible = KeyboardService.isVisible(context);
+
+    ref.listen(loginFlowStateObservableProvider,
+        (LoginFlowStateObservable? previous, LoginFlowStateObservable? next) {
+      if (previous?.currentPage != next?.currentPage) {
+        carouselController.value.animateToPage(next?.currentPage ?? 0);
+        pageController.value.animateToPage(next?.currentPage ?? 0,
+            duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
+      }
+    });
 
     return KeyboardAutoDismiss(
       scaffold: Scaffold(
@@ -43,10 +53,12 @@ class LoginPage extends HookConsumerWidget {
                     children: [
                       LoginStepOne(
                         onNextPressed: () {
+                          /*
                           carouselController.value.nextPage();
                           pageController.value.nextPage(
                               duration: const Duration(milliseconds: 300),
                               curve: Curves.easeIn);
+                          */
                           ref.watch(verifyNumberSignalProvider).dispatch();
                         },
                       ),

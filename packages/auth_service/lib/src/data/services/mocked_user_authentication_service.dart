@@ -1,6 +1,5 @@
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:auth_service/auth_service.dart';
-import 'package:auth_service/src/domain/entities/user_auth_entity.dart';
-import 'package:riverpod/src/framework.dart';
 
 class MockedUserAuthService extends UserAuthenticationService {
   final Future<UserAuthEntity> Function()? emailLoginFunction;
